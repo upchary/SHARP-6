@@ -45,6 +45,7 @@ public class UserController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String userLogin = userService.userLogin(entity);
 		if (userLogin.equals(Constants.SUCCESS)) {
+			System.out.println("Login succcess");
 			map.put(Constants.STATUS, Constants.SUCCESS);
 			map.put("value1", "Login Success");
 			map.put("value", entity);
