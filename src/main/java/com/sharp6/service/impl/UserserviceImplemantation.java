@@ -34,12 +34,15 @@ public class UserserviceImplemantation implements UserServicee {
 	public String userLogin(LoginSession entity) {
 		// TODO Auto-generated method stub
 		try {
-			if (!getUser(entity).equals(Constants.SUCCESS)) {
-				LoginSession userLogin = userdao.userLogin(entity.getEmai(), entity.getPassword());
-				System.out.println(userLogin.getEmai());
+			if (getUser(entity).equals(Constants.SUCCESS)) {
+				LoginSession userLogin = userdao.userLogin(entity.getEmail(), entity.getPassword());
+
+				System.out.println(userLogin.getEmail());
 				return Constants.SUCCESS;
+			} else {
+
+				return Constants.FAILURE;
 			}
-			return Constants.FAILURE;
 		} catch (
 
 		Exception e) {
@@ -50,10 +53,10 @@ public class UserserviceImplemantation implements UserServicee {
 	}
 
 	@Override
-	public String deleteLogin(String userId,String logouttime) {
+	public String deleteLogin(String userId, String logouttime) {
 		// TODO Auto-generated method stub
 		try {
-			LoginSession userLouserLogout = userdao.userLogout(userId,logouttime);
+			LoginSession userLouserLogout = userdao.userLogout(userId, logouttime);
 			return Constants.SUCCESS;
 
 		} catch (Exception e) {
@@ -65,7 +68,7 @@ public class UserserviceImplemantation implements UserServicee {
 
 	public String getUser(LoginSession entity) {
 		try {
-			UserMaster user = userdao.getUser(entity.getEmai(), entity.getPassword());
+			UserMaster user = userdao.getUser(entity.getEmail(), entity.getPassword());
 			return Constants.SUCCESS;
 		} catch (Exception e) {
 			// TODO: handle exception

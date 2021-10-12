@@ -9,7 +9,7 @@ public class LoginSession {
 	@Id
 	private String sessionID;
 
-	private String emai;
+	private String email;
 	private String userId;
 
 	private String deviceType;
@@ -118,13 +118,12 @@ public class LoginSession {
 		this.password = password;
 	}
 
-	public String getEmai() {
-		return emai;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmai(String emai) {
-		this.emai = emai;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	
 
 }
