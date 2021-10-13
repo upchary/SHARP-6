@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sharp6.entity.user.LoginSession;
 import com.sharp6.entity.user.UserMaster;
+import com.sharp6.repository.LoginRepository;
 import com.sharp6.repository.UserRepositoryy;
 import com.sharp6.service.UserServicee;
 import com.sharp6.util.Constants;
@@ -15,6 +16,8 @@ import com.sharp6.util.Constants;
 public class UserserviceImplemantation implements UserServicee {
 	@Autowired
 	UserRepositoryy userdao;
+	@Autowired
+	LoginRepository loginDao;
 
 	@Override
 	public com.sharp6.entity.user.UserMaster newUserRegister(UserMaster user) {
@@ -35,9 +38,11 @@ public class UserserviceImplemantation implements UserServicee {
 		// TODO Auto-generated method stub
 		try {
 			if (getUser(entity).equals(Constants.SUCCESS)) {
-				LoginSession userLogin = userdao.userLogin(entity.getEmail(), entity.getPassword());
+				UserMaster userLogin = userdao.getUser(entity.getEmail(), entity.getPassword());
 
 				System.out.println(userLogin.getEmail());
+				LoginSession save = loginDao.save(entity);
+				System.out.println(save.getLoginTime());
 				return Constants.SUCCESS;
 			} else {
 
@@ -56,7 +61,7 @@ public class UserserviceImplemantation implements UserServicee {
 	public String deleteLogin(String userId, String logouttime) {
 		// TODO Auto-generated method stub
 		try {
-			LoginSession userLouserLogout = userdao.userLogout(userId, logouttime);
+			LoginSession userLouserLogout = loginDao.userLogout(userId, logouttime);
 			return Constants.SUCCESS;
 
 		} catch (Exception e) {
@@ -82,7 +87,7 @@ public class UserserviceImplemantation implements UserServicee {
 		// TODO Auto-generated method stub
 		try {
 
-			userdao.changePassword(user.getUserId(), user.getPassword());
+			UserMaster changePassword = userdao.changePassword(user.getUserId(), user.getPassword());
 			return Constants.SUCCESS;
 		} catch (Exception e) {
 			// TODO: handle exception
