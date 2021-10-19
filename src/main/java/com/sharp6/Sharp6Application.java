@@ -10,7 +10,7 @@ public class Sharp6Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Sharp6Application.class, args);
-		System.out.println("commits changes");
+		
 	}
 
 }
