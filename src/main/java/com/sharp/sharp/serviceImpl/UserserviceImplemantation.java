@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sharp.sharp.entity.LoginSession;
 import com.sharp.sharp.entity.UserMaster;
+import com.sharp.sharp.repository.LoginRepository;
 import com.sharp.sharp.repository.UserRepository;
 import com.sharp.sharp.service.UserService;
 import com.sharp.sharp.util.Constants;
@@ -17,6 +18,8 @@ import com.sharp.sharp.util.Constants;
 public class UserserviceImplemantation implements UserService {
 	@Autowired
 	UserRepository userdao;
+	@Autowired
+	LoginRepository loginDao;
 
 	@Override
 	public UserMaster newUserRegister(UserMaster user) {
@@ -51,17 +54,7 @@ public class UserserviceImplemantation implements UserService {
 
 	}
 
-	@Override
-	public String deleteLogin(String userId, String logouttime) {
-		try {
-			LoginSession userLouserLogout = userdao.userLogout(userId, logouttime);
-			return Constants.SUCCESS;
-
-		} catch (Exception e) {
-			return Constants.FAILURE;
-		}
-
-	}
+	
 
 	public String getUser(LoginSession entity) {
 		try {
