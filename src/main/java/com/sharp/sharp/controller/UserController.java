@@ -1,12 +1,12 @@
 package com.sharp.sharp.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sharp.sharp.entity.LoginSession;
@@ -26,6 +26,9 @@ public class UserController {
 		HashMap<String, Object> resultMap = new HashMap<>();
 		String[] split = user.getEmail().split("@");
 		user.setUserId(split[0]);
+		user.setActivestatus(true);
+		
+		user.setCreatedDate(String.valueOf(new Date().getTime()));
 
 		UserMaster registerObj = userService.newUserRegister(user);
 		System.out.println("object registerd in db succesfully");

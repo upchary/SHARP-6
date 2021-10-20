@@ -10,9 +10,9 @@ import org.apache.log4j.Logger;
  *
  */
 @SuppressWarnings("serial")
-public class KPOSTWebServiceException extends Exception {
+public class SHARPWebServiceException extends Exception {
 	
-	private static final Logger logger = Logger.getLogger(KPOSTWebServiceException.class);
+	private static final Logger logger = Logger.getLogger(SHARPWebServiceException.class);
 
 	/**
 	 * 
@@ -48,13 +48,13 @@ public class KPOSTWebServiceException extends Exception {
 	/**
 	 * 
 	 */
-	public KPOSTWebServiceException() {
+	public SHARPWebServiceException() {
 	}
 	
 	/**
 	 * @param message
 	 */
-	public KPOSTWebServiceException(String erroCode , String message ) {
+	public SHARPWebServiceException(String erroCode , String message ) {
 		super(message);
 		logger.error("Exception issued by KPOST Webservice  "+erroCode+"  "+message);
 		this.message=message;
@@ -64,7 +64,7 @@ public class KPOSTWebServiceException extends Exception {
 	/**
 	 * @param message
 	 */
-	public KPOSTWebServiceException(String message) {
+	public SHARPWebServiceException(String message) {
 		super(message);
 		this.message=message;
 	}
@@ -72,7 +72,7 @@ public class KPOSTWebServiceException extends Exception {
 	/**
 	 * @param cause
 	 */
-	public KPOSTWebServiceException(Throwable cause) {
+	public SHARPWebServiceException(Throwable cause) {
 		super(cause);
 	}
 
@@ -80,7 +80,7 @@ public class KPOSTWebServiceException extends Exception {
 	 * @param message
 	 * @param cause
 	 */
-	public KPOSTWebServiceException(String message, Throwable cause) {
+	public SHARPWebServiceException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
@@ -90,7 +90,7 @@ public class KPOSTWebServiceException extends Exception {
 	 * @param enableSuppression
 	 * @param writableStackTrace
 	 */
-	public KPOSTWebServiceException(String message, Throwable cause, boolean enableSuppression,
+	public SHARPWebServiceException(String message, Throwable cause, boolean enableSuppression,
 			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}

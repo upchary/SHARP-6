@@ -1,5 +1,7 @@
 package com.sharp.sharp.entity;
 
+import java.security.Timestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,6 +27,7 @@ public class UserMaster {
 	private String pincode;
 	private String role;
 	private boolean activestatus;
+	private String createdDate;
 
 	public String getUserId() {
 		return userId;
@@ -144,6 +147,14 @@ public class UserMaster {
 
 	public void setSharpId(int sharpId) {
 		this.sharpId = sharpId;
+	}
+
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
 	}
 
 }
