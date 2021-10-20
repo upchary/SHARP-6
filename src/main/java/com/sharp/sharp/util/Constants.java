@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sharp6.util;
+package com.sharp.sharp.util;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.sharp6.controller;
+package com.sharp.sharp.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sharp6.entity.user.LoginSession;
-import com.sharp6.entity.user.UserMaster;
-import com.sharp6.service.UserServicee;
-import com.sharp6.util.Constants;
+import com.sharp.sharp.entity.LoginSession;
+import com.sharp.sharp.entity.UserMaster;
+import com.sharp.sharp.service.UserService;
+import com.sharp.sharp.util.Constants;
 
 @RestController
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
-	private UserServicee userService;
+	private UserService userService;
 
 	@PostMapping("/newRegister/")
 	public HashMap<String, Object> newUserRegister(@RequestBody UserMaster user) {

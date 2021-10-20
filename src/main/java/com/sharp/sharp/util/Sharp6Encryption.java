@@ -1,4 +1,4 @@
-package com.sharp6.util;
+package com.sharp.sharp.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;

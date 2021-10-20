@@ -1,14 +1,16 @@
-package com.sharp6.service;
+package com.sharp.sharp.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sharp6.entity.user.LoginSession;
-import com.sharp6.entity.user.UserMaster;
+import com.sharp.sharp.entity.LoginSession;
+import com.sharp.sharp.entity.UserMaster;
+
+
 
 @Service
 @Transactional
-public interface UserServicee {
+public interface UserService {
 
 	public UserMaster newUserRegister(UserMaster user);
 

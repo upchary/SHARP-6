@@ -1,4 +1,4 @@
-package com.sharp6.entity.user;
+package com.sharp.sharp.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

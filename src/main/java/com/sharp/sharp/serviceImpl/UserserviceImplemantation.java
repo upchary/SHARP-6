@@ -1,33 +1,31 @@
-package com.sharp6.service.impl;
+package com.sharp.sharp.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sharp6.entity.user.LoginSession;
-import com.sharp6.entity.user.UserMaster;
-import com.sharp6.repository.LoginRepository;
-import com.sharp6.repository.UserRepositoryy;
-import com.sharp6.service.UserServicee;
-import com.sharp6.util.Constants;
+import com.sharp.sharp.entity.LoginSession;
+import com.sharp.sharp.entity.UserMaster;
+import com.sharp.sharp.repository.UserRepository;
+import com.sharp.sharp.service.UserService;
+import com.sharp.sharp.util.Constants;
+
+
 
 @Component
 @Transactional
-public class UserserviceImplemantation implements UserServicee {
+public class UserserviceImplemantation implements UserService {
 	@Autowired
-	UserRepositoryy userdao;
-	@Autowired
-	LoginRepository loginDao;
+	UserRepository userdao;
 
 	@Override
-	public com.sharp6.entity.user.UserMaster newUserRegister(UserMaster user) {
+	public UserMaster newUserRegister(UserMaster user) {
 
 		UserMaster userObj = new UserMaster();
 		try {
 			userObj = userdao.save(user);
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			return null;
 		}
 		return userObj;
@@ -35,14 +33,11 @@ public class UserserviceImplemantation implements UserServicee {
 
 	@Override
 	public String userLogin(LoginSession entity) {
-		// TODO Auto-generated method stub
 		try {
 			if (getUser(entity).equals(Constants.SUCCESS)) {
-				UserMaster userLogin = userdao.getUser(entity.getEmail(), entity.getPassword());
+				LoginSession userLogin = userdao.userLogin(entity.getEmail(), entity.getPassword());
 
 				System.out.println(userLogin.getEmail());
-				LoginSession save = loginDao.save(entity);
-				System.out.println(save.getLoginTime());
 				return Constants.SUCCESS;
 			} else {
 
@@ -51,7 +46,6 @@ public class UserserviceImplemantation implements UserServicee {
 		} catch (
 
 		Exception e) {
-			// TODO: handle exception
 			return Constants.FAILURE;
 		}
 
@@ -59,13 +53,11 @@ public class UserserviceImplemantation implements UserServicee {
 
 	@Override
 	public String deleteLogin(String userId, String logouttime) {
-		// TODO Auto-generated method stub
 		try {
-			LoginSession userLouserLogout = loginDao.userLogout(userId, logouttime);
+			LoginSession userLouserLogout = userdao.userLogout(userId, logouttime);
 			return Constants.SUCCESS;
 
 		} catch (Exception e) {
-			// TODO: handle exception
 			return Constants.FAILURE;
 		}
 
@@ -76,7 +68,6 @@ public class UserserviceImplemantation implements UserServicee {
 			UserMaster user = userdao.getUser(entity.getEmail(), entity.getPassword());
 			return Constants.SUCCESS;
 		} catch (Exception e) {
-			// TODO: handle exception
 			return Constants.FAILURE;
 		}
 
@@ -84,13 +75,11 @@ public class UserserviceImplemantation implements UserServicee {
 
 	@Override
 	public String changePassword(UserMaster user) {
-		// TODO Auto-generated method stub
 		try {
 
-			UserMaster changePassword = userdao.changePassword(user.getUserId(), user.getPassword());
+			userdao.changePassword(user.getUserId(), user.getPassword());
 			return Constants.SUCCESS;
 		} catch (Exception e) {
-			// TODO: handle exception
 			return Constants.FAILURE;
 		}
 
