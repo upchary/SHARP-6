@@ -1,12 +1,15 @@
 package com.sharp.sharp.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sharp.sharp.entity.LoginSession;
 import com.sharp.sharp.repository.LoginRepository;
 import com.sharp.sharp.service.LoginService;
 import com.sharp.sharp.util.Constants;
-
+@Component
+@Transactional
 public class LoginserviceImplementation implements LoginService {
 	@Autowired
 	private LoginRepository loginDao;
@@ -27,7 +30,7 @@ public class LoginserviceImplementation implements LoginService {
 	@Override
 	public String deleteLogin(String userId, String logouttime) {
 		try {
-			LoginSession userLouserLogout = loginDao.userLogout(userId, logouttime);
+			LoginSession userLogout = loginDao.userLogout(userId, logouttime);
 			return Constants.SUCCESS;
 
 		} catch (Exception e) {

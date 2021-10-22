@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 
 public class ImagesEntity {
@@ -16,7 +18,7 @@ public class ImagesEntity {
 	private String name;
 
 	@Lob
-	private byte[] image;
+	private MultipartFile image;
 
 	public long getId() {
 		return id;
@@ -34,11 +36,11 @@ public class ImagesEntity {
 		this.name = name;
 	}
 
-	public byte[] getImage() {
+	public MultipartFile getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
-		this.image = image;
+	public void setImage(MultipartFile multipartFile) {
+		this.image = multipartFile;
 	}
 }

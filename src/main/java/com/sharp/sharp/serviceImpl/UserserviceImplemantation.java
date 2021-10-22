@@ -17,9 +17,9 @@ import com.sharp.sharp.util.Constants;
 @Transactional
 public class UserserviceImplemantation implements UserService {
 	@Autowired
-	UserRepository userdao;
+	private UserRepository userdao;
 	@Autowired
-	LoginRepository loginDao;
+	private LoginRepository loginDao;
 
 	@Override
 	public UserMaster newUserRegister(UserMaster user) {
