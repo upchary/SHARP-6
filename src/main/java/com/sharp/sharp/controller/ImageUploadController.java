@@ -7,8 +7,6 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +31,7 @@ public class ImageUploadController {
 	public String uploadMultipleFiles(@RequestParam("myFiles") MultipartFile[] multipartFiles) throws IOException {
 		String status = null;
 		for (MultipartFile multipartFile : multipartFiles) {
-			multipartFile.transferTo(new File("F:\\backupfromold cpu\\test" + multipartFile.getOriginalFilename()));
+			multipartFile.transferTo(new File("F:\\" + multipartFile.getOriginalFilename()));
 			ImagesEntity entity = new ImagesEntity();
 			entity.setImage(multipartFile);
 			ImagesEntity upoadImages = ImageService.upoadImages(entity);
