@@ -12,35 +12,61 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImagesEntity {
 
 	@Id
-	@GeneratedValue
-	private long id;
+	
+	private String id;
 
-	private String name;
+	private String fileName;
+
+	private String fileType;
 
 	@Lob
-	private MultipartFile image;
+	private byte[] data;
 
-	public long getId() {
+	public ImagesEntity(String fileName, String fileType, byte[] data) {
+		this.fileName = fileName;
+		this.fileType = fileType;
+		this.data = data;
+	}
+
+	public ImagesEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ImagesEntity(String fileName2, String fileDownloadUri, String contentType, long size) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
-	public MultipartFile getImage() {
-		return image;
+	public String getFileType() {
+		return fileType;
 	}
 
-	public void setImage(MultipartFile multipartFile) {
-		this.image = multipartFile;
+	public void setFileType(String fileType) {
+		this.fileType = fileType;
 	}
+
+	public byte[] getData() {
+		return data;
+	}
+
+	public void setData(byte[] data) {
+		this.data = data;
+	}
+
+	
 }
