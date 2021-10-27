@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,8 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImagesEntity {
 
 	@Id
-	
+
 	private String id;
+
+	private String userId;
 
 	private String fileName;
 
@@ -21,18 +24,38 @@ public class ImagesEntity {
 
 	@Lob
 	private byte[] data;
+	@Transient
+	private long size;
+	@Transient
+	private String fileDownloadUri;
 
-	public ImagesEntity(String fileName, String fileType, byte[] data) {
+	public long getSize() {
+		return size;
+	}
+
+	public void setSize(long size) {
+		this.size = size;
+	}
+
+	public String getFileDownloadUri() {
+		return fileDownloadUri;
+	}
+
+	public void setFileDownloadUri(String fileDownloadUri) {
+		this.fileDownloadUri = fileDownloadUri;
+	}
+
+	public ImagesEntity(String userId, String fileName, String fileType, long size, String fileDownloadUri2) {
+		super();
+
+		this.userId = userId;
 		this.fileName = fileName;
-		this.fileType = fileType;
-		this.data = data;
+
+		this.size = size;
+		this.fileDownloadUri = fileDownloadUri2;
 	}
 
 	public ImagesEntity() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public ImagesEntity(String fileName2, String fileDownloadUri, String contentType, long size) {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -68,5 +91,12 @@ public class ImagesEntity {
 		this.data = data;
 	}
 
-	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 }

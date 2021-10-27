@@ -3,6 +3,7 @@ package com.sharp.sharp.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sharp.sharp.entity.ImagesEntity;
 import com.sharp.sharp.service.ImageUploadService;
+import com.sharp.sharp.util.Constants;
 import com.sharp.sharp.util.Sharp6Validation;
 
 @RestController
@@ -21,33 +23,27 @@ public class ImageUploadController {
 	@Autowired
 	private ImageUploadService ImageService;
 
-	@PostMapping("/uploadImages/")
-	public HashMap<String, Object> uploadImage(@RequestBody MultipartFile file) {
+	@PostMapping("/getAllImagesById/")
+	public HashMap<String, Object> uploadImage(@RequestBody ImagesEntity file) {
 		HashMap<String, Object> resultMap = new HashMap<>();
-
+		List<ImagesEntity> allImagesById = ImageService.getAllImagesById(file.getUserId());
+		if (Sharp6Validation.isEmpty(allImagesById)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", allImagesById);
+		}
+		else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("value", "No Images Are available");
+		}
 		return resultMap;
 	}
 
-	@PostMapping(value = "/multiple-file-upload")
-	public String uploadMultipleFiles(@RequestParam("myFiles") MultipartFile[] multipartFiles) throws IOException {
-		String status = null;
-		for (MultipartFile multipartFile : multipartFiles) {
-			multipartFile.transferTo(new File("F:\\" + multipartFile.getOriginalFilename()));
-			ImagesEntity entity = new ImagesEntity();
-			// entity.setImage(multipartFile);
-			ImagesEntity upoadImages = ImageService.upoadImages(entity);
-			if (!Sharp6Validation.isEmpty(upoadImages)) {
-				status = "success";
-			}
-
-		}
-		return status;
-	}
-
-	@PostMapping("/uploadFile")
-	public ImagesEntity uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+	@PostMapping("/uploadFile/")
+	public ImagesEntity uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("userId") String userId)
+			throws IOException {
 
 		ImagesEntity entity = new ImagesEntity();
+		entity.setUserId(userId);
 		entity.setId(String.valueOf(System.currentTimeMillis()));
 		entity.setFileName(file.getName());
 		entity.setData(file.getBytes());
@@ -56,6 +52,8 @@ public class ImageUploadController {
 		String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFile/")
 				.path(dbFile.getId()).toUriString();
 
-		return new ImagesEntity(dbFile.getFileName(), fileDownloadUri, file.getContentType(), file.getSize());
+		return new ImagesEntity(dbFile.getUserId(), file.getName(), file.getContentType(), file.getSize(),
+				fileDownloadUri);
 	}
+
 }
