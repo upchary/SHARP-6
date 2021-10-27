@@ -9,6 +9,5 @@ public class SharpApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SharpApplication.class, args);
 	}
-	
 
 }
