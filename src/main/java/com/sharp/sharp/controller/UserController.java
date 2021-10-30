@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sharp.sharp.entity.LoginSession;
@@ -17,7 +18,7 @@ import com.sharp.sharp.util.Constants;
 import com.sharp.sharp.util.Sharp6Validation;
 
 @RestController
-//@RequestMapping("/user")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -50,8 +51,9 @@ public class UserController {
 	@PostMapping("/Login/")
 	public Map<String, Object> loginUser(@RequestBody LoginSession entity) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		String userLogin = userService.userLogin(entity);
-		if (userLogin.equals(Constants.SUCCESS)) {
+		UserMaster userLogin = userService.userLogin(entity);
+		if (!Sharp6Validation.isEmpty(userLogin)) {
+			entity.setRole(userLogin.getRole());
 			LoginSession insertLogin = loginService.insertLogin(entity);
 			if (!Sharp6Validation.isEmpty(insertLogin)) {
 				System.out.println("Login succcess");
@@ -96,12 +98,13 @@ public class UserController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
 			String status = userService.changePassword(user);
+			System.out.println(status);
 			if (status.equals(Constants.SUCCESS)) {
 				map.put(Constants.STATUS, status);
-				map.put("value", "Password Updated Successfully");
+				map.put("value", "password Updated Successfully");
 			} else {
 				map.put(Constants.STATUS, Constants.FAILURE);
-				map.put("value", "Try again");
+				map.put("value", "password Not Updated");
 			}
 		} catch (Exception e) {
 

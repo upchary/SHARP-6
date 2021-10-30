@@ -11,8 +11,6 @@ import com.sharp.sharp.repository.UserRepository;
 import com.sharp.sharp.service.UserService;
 import com.sharp.sharp.util.Constants;
 
-
-
 @Component
 @Transactional
 public class UserserviceImplemantation implements UserService {
@@ -35,26 +33,24 @@ public class UserserviceImplemantation implements UserService {
 	}
 
 	@Override
-	public String userLogin(LoginSession entity) {
+	public UserMaster userLogin(LoginSession entity) {
 		try {
 			if (getUser(entity).equals(Constants.SUCCESS)) {
-				LoginSession userLogin = userdao.userLogin(entity.getEmail(), entity.getPassword());
+				UserMaster userLogin = userdao.getUser(entity.getEmail(), entity.getPassword());
 
 				System.out.println(userLogin.getEmail());
-				return Constants.SUCCESS;
+				return userLogin;
 			} else {
 
-				return Constants.FAILURE;
+				return null;
 			}
 		} catch (
 
 		Exception e) {
-			return Constants.FAILURE;
+			return null;
 		}
 
 	}
-
-	
 
 	public String getUser(LoginSession entity) {
 		try {
@@ -69,8 +65,9 @@ public class UserserviceImplemantation implements UserService {
 	@Override
 	public String changePassword(UserMaster user) {
 		try {
-
-			userdao.changePassword(user.getUserId(), user.getPassword());
+			UserMaster byId = userdao.getById(user.getSharpId());
+			byId.setPassword(user.getPassword());
+			UserMaster save = userdao.save(byId);
 			return Constants.SUCCESS;
 		} catch (Exception e) {
 			return Constants.FAILURE;

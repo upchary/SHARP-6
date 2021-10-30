@@ -9,6 +9,7 @@ import com.sharp.sharp.entity.LoginSession;
 @Repository
 public interface LoginRepository extends JpaRepository<LoginSession, String> {
 
-	@Query(value = "update logouttime=?2 FROM login_session WHERE userId = ?1 ", nativeQuery = true)
-	LoginSession userLogout(String userId, String logouttime);
+	@Query(value = "UPDATE myapplication.dbo.login_session SET 	logouttime=?2  WHERE user_id =?1 ", nativeQuery = true)
+	void userLogout(String userId, String logouttime);
+
 }

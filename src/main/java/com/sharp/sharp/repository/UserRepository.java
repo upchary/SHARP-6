@@ -8,13 +8,13 @@ import com.sharp.sharp.entity.LoginSession;
 import com.sharp.sharp.entity.UserMaster;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserMaster, String> {
+public interface UserRepository extends JpaRepository<UserMaster, Integer> {
 
 	@Query(value = "SELECT * FROM user_master WHERE email = ?1 and password = ?2 and activestatus=1", nativeQuery = true)
 	UserMaster getUser(String emailAddress, String password);
 
 	@Query(value = "SELECT * FROM user_master WHERE email = ?1 and password = ?2", nativeQuery = true)
-	LoginSession userLogin(String emailAddress, String password);
+	UserMaster userLogin(String emailAddress, String password);
 
 
 	@Query(value = "update password=?2 FROM user_master WHERE userId = ?1 ", nativeQuery = true)

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sharp.sharp.controller.ContestantController;
 import com.sharp.sharp.entity.ContestastantsEntity;
 import com.sharp.sharp.repository.ContestantRepository;
 

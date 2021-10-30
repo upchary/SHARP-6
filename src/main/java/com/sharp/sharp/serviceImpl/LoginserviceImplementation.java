@@ -30,7 +30,11 @@ public class LoginserviceImplementation implements LoginService {
 	@Override
 	public String deleteLogin(String userId, String logouttime) {
 		try {
-			LoginSession userLogout = loginDao.userLogout(userId, logouttime);
+			LoginSession byId = loginDao.getById(userId);
+			System.out.println(userId);
+			byId.setLogouttime(logouttime);
+			LoginSession save = loginDao.save(byId);
+			
 			return Constants.SUCCESS;
 
 		} catch (Exception e) {

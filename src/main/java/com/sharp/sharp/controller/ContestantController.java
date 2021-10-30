@@ -28,12 +28,15 @@ public class ContestantController {
 	public HashMap<String, Object> addContestant(@RequestBody List<ContestastantsEntity> contestnts) {
 		HashMap<String, Object> resultMap = new HashMap<>();
 		List<ContestastantsEntity> resultObj = contestantService.createNewContestant(contestnts);
+		System.out.println("ready");
 		if (!Sharp6Validation.isEmpty(resultObj)) {
 			resultMap.put("status", Constants.SUCCESS);
 			resultMap.put("value", resultObj);
+			System.out.println("success");
 		} else {
 			resultMap.put("status", Constants.FAILURE);
 			resultMap.put("value", "No contestants were Added");
+			System.out.println("failed");
 		}
 		return resultMap;
 

@@ -12,7 +12,7 @@ public interface UserService {
 
 	public UserMaster newUserRegister(UserMaster user);
 
-	public String userLogin(LoginSession entity);
+	public UserMaster userLogin(LoginSession entity);
 
 	public String changePassword(UserMaster user);
 
