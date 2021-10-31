@@ -30,12 +30,13 @@ public class UserController {
 	public HashMap<String, Object> newUserRegister(@RequestBody UserMaster user) {
 		HashMap<String, Object> resultMap = new HashMap<>();
 		String[] split = user.getEmail().split("@");
-		user.setUserId(split[0]);
+		user.setUserName(split[0]);
 		user.setActivestatus(true);
 
 		user.setCreatedDate(String.valueOf(new Date().getTime()));
 
 		UserMaster registerObj = userService.newUserRegister(user);
+		//log files
 		System.out.println("object registerd in db succesfully");
 		System.out.println("changes");
 		if (registerObj != null) {

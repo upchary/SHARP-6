@@ -65,7 +65,7 @@ public class UserserviceImplemantation implements UserService {
 	@Override
 	public String changePassword(UserMaster user) {
 		try {
-			UserMaster byId = userdao.getById(user.getSharpId());
+			UserMaster byId = userdao.getById(user.getUserId());
 			byId.setPassword(user.getPassword());
 			UserMaster save = userdao.save(byId);
 			return Constants.SUCCESS;

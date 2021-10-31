@@ -11,8 +11,8 @@ import javax.persistence.Transient;
 public class UserMaster {
 	@Id
 	@GeneratedValue
-	private int sharpId;
-	private String userId;
+	private int userId;
+	private String userName;
 	private String firstName;
 	private String lastName;
 	private String password;
@@ -29,12 +29,20 @@ public class UserMaster {
 	private boolean activestatus;
 	private String createdDate;
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getFirstName() {
@@ -139,14 +147,6 @@ public class UserMaster {
 
 	public void setActivestatus(boolean activestatus) {
 		this.activestatus = activestatus;
-	}
-
-	public int getSharpId() {
-		return sharpId;
-	}
-
-	public void setSharpId(int sharpId) {
-		this.sharpId = sharpId;
 	}
 
 	public String getCreatedDate() {
