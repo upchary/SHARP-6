@@ -1,5 +1,6 @@
 package com.sharp.sharp.serviceImpl;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import com.sharp.sharp.util.Constants;
 @Component
 @Transactional
 public class UserserviceImplemantation implements UserService {
+	private static final Logger logger = Logger.getLogger(UserserviceImplemantation.class);
 	@Autowired
 	private UserRepository userdao;
 	@Autowired

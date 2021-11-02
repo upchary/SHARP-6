@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.codec.language.bm.Languages;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ import com.sharp.sharp.util.Sharp6Validation;
 
 @RestController
 public class ContestantController {
+	private static final Logger logger = Logger.getLogger(ContestantController.class);
+	
 	@Autowired
 	ContestatantService contestantService;
 

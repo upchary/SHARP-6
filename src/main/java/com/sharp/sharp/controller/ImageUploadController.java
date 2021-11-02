@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,12 +15,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sharp.sharp.entity.ImagesEntity;
+import com.sharp.sharp.exception.SHARPWebServiceException;
 import com.sharp.sharp.service.ImageUploadService;
 import com.sharp.sharp.util.Constants;
 import com.sharp.sharp.util.Sharp6Validation;
 
 @RestController
 public class ImageUploadController {
+
+	private static final Logger logger = Logger.getLogger(ImageUploadController.class);
 	@Autowired
 	private ImageUploadService ImageService;
 
@@ -30,8 +34,7 @@ public class ImageUploadController {
 		if (Sharp6Validation.isEmpty(allImagesById)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);
 			resultMap.put("value", allImagesById);
-		}
-		else {
+		} else {
 			resultMap.put(Constants.STATUS, Constants.FAILURE);
 			resultMap.put("value", "No Images Are available");
 		}

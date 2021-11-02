@@ -23,6 +23,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.metamodel.Metamodel;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +38,8 @@ import com.sharp.sharp.util.Constants;
 @Component
 @Transactional
 public class LoginserviceImplementation implements LoginService {
+
+	private static final Logger logger = Logger.getLogger(LoginserviceImplementation.class);
 	@Autowired
 	private LoginRepository loginDao;
 
@@ -110,7 +113,7 @@ public class LoginserviceImplementation implements LoginService {
 	@Override
 	public OTPValidation validateOTP(OTPValidation otpvalidation) {
 		// TODO Auto-generated method stub
-		
-		return OtpVaidateRepositpry.validateOTP( otpvalidation);
+
+		return OtpVaidateRepositpry.validateOTP(otpvalidation);
 	}
 }
