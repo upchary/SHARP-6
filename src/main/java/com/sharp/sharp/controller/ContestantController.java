@@ -50,23 +50,6 @@ public class ContestantController {
 
 	}
 
-	@RequestMapping(value = "/getAllLanguages/", method = RequestMethod.GET)
-	public ResponseEntity<Map<String, Object>> getLanguages() {
-		HashMap<String, Object> resultMap = new HashMap<>();
-		resultMap.put(Constants.URLPATH, "getAllLanguages");
-		try {
-			List<Languages> langList = null;// logic gere
 
-			if (langList.size() > 0) {
-				resultMap.put("status", Constants.SUCCESS);
-				resultMap.put("value", langList);
-			}
-		} catch (Exception e) {
-			resultMap.put("status", Constants.FAILURE);
-			resultMap.put("errormessage", e.getMessage());
-			resultMap.put("errorvalue", e.getLocalizedMessage());
-		}
-		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
-	}
 
 }

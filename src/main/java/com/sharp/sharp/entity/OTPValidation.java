@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "TBL_KPOST_OTPVALIDATION")
+@Table(name = "OTPVALIDATION")
 public class OTPValidation {
 
 	@Id

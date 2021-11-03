@@ -22,5 +22,5 @@ public interface UserRepository extends JpaRepository<UserMaster, Integer> {
 	UserMaster changePassword(String userId, String password);
 
 	@Query(value = "SELECT * FROM language", nativeQuery = true)
-	List<Language> getALLLanguages();
+	List<Object[]> getALLLanguages();
 }

@@ -188,7 +188,7 @@ public class UserController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 
 		try {
-			List<Language> langList = userService.getALLLanguages();
+			List<Object[]> langList = userService.getALLLanguages();
 			
 
 			if (langList.size() > 0) {

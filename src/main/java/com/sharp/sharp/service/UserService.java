@@ -19,6 +19,6 @@ public interface UserService {
 
 	public String changePassword(UserMaster user);
 
-	public List<Language> getALLLanguages();
+	public List<Object[]> getALLLanguages();
 
 }

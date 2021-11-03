@@ -84,7 +84,7 @@ public class UserserviceImplemantation implements UserService {
 	}
 
 	@Override
-	public List<Language> getALLLanguages() {
+	public List<Object[]> getALLLanguages() {
 		// TODO Auto-generated method stub
 		return userdao.getALLLanguages();
 	}
