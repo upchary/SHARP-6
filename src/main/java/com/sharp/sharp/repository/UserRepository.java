@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.sharp.sharp.entity.Language;
-import com.sharp.sharp.entity.LoginSession;
 import com.sharp.sharp.entity.UserMaster;
 
 @Repository
