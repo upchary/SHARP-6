@@ -1,9 +1,12 @@
 package com.sharp.sharp.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sharp.sharp.entity.Language;
 import com.sharp.sharp.entity.LoginSession;
 import com.sharp.sharp.entity.UserMaster;
 import com.sharp.sharp.repository.LoginRepository;
@@ -73,6 +76,12 @@ public class UserserviceImplemantation implements UserService {
 			return Constants.FAILURE;
 		}
 
+	}
+
+	@Override
+	public List<Language> getALLLanguages() {
+		// TODO Auto-generated method stub
+		return userdao.getALLLanguages();
 	}
 
 }

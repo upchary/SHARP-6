@@ -1,7 +1,4 @@
-/**
- * @author Jitendra
- * @DATE 23-02-2021
- */
+
 package com.sharp.sharp.util;
 
 import java.io.File;
@@ -37,13 +34,13 @@ import org.springframework.http.MediaType;
 import com.sun.mail.util.BASE64DecoderStream;
 
 public class SHARP6MailConstants {
-	
+
 	private static final int BUFFER_SIZE = 4096;
 
 	private static int numberOfParts;
 
 	static String attachFiles = "";
-	
+
 	public static Multipart getAttachmentFromServer(String attachmentPath, String AWSKstorePath) {
 		MimeBodyPart messageBodyPart = null;
 		Multipart multipart = new MimeMultipart();
@@ -79,7 +76,6 @@ public class SHARP6MailConstants {
 		}
 		return multipart;
 	}
-
 
 	public static String getUploadPath(MimeBodyPart part) {
 		String outputPath = "";
@@ -304,7 +300,7 @@ public class SHARP6MailConstants {
 		return new Timestamp(gmtMilliSeconds1);
 
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public static List<Timestamp> getStartAndEndDayLocalTime(Timestamp timestamp) {
 		List<Timestamp> timestamps = new ArrayList<>();
@@ -314,16 +310,16 @@ public class SHARP6MailConstants {
 		startTime.setMinutes(0);
 		startTime.setSeconds(0);
 		startTime.setNanos(0);
-		long newStartTime=startTime.getTime()-(330*60*1000);
-		startTime= new Timestamp(newStartTime);
+		long newStartTime = startTime.getTime() - (330 * 60 * 1000);
+		startTime = new Timestamp(newStartTime);
 		timestamps.add(startTime);
 		Timestamp endTime = new Timestamp(timestamp.getTime());
 		endTime.setHours(23);
 		endTime.setMinutes(59);
 		endTime.setSeconds(59);
 		endTime.setNanos(999999999);
-		long newEndTime=endTime.getTime()-(330*60*1000);
-		endTime= new Timestamp(newEndTime);
+		long newEndTime = endTime.getTime() - (330 * 60 * 1000);
+		endTime = new Timestamp(newEndTime);
 		timestamps.add(endTime);
 		return timestamps;
 	}
