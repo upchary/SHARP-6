@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sharp.sharp.entity.Category;
+import com.sharp.sharp.entity.Subcategory;
 import com.sharp.sharp.repository.CategoryRepository;
 import com.sharp.sharp.service.HomeDashBoardService;
 
@@ -25,9 +26,14 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 		try {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 			cateory.setCategoryid(String.valueOf(timestamp));
+			logger.info("=============>");
 			cateory.setCreateddate(new Timestamp(System.currentTimeMillis()));
-			cateory.getSubcategoryid().setSubcategoryid(cateory.getSubcategoryid().getSubcategoryname().toUpperCase());
-			cateory.getSubcategoryid().setCreateddate(new Timestamp(System.currentTimeMillis()));
+			for (int i = 0; i <cateory.getSubcategoryid().size(); i++) {
+				cateory.getSubcategoryid().get(i)
+						.setSubcategoryid(cateory.getSubcategoryid().get(i).getSubcategoryname().toUpperCase());
+				cateory.getSubcategoryid().get(i).setCreateddate(new Timestamp(System.currentTimeMillis()));
+
+			}
 
 			Category obj = categoryDao.save(cateory);
 			logger.info("success");

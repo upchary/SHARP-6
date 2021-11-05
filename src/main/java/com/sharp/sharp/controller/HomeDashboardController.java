@@ -31,7 +31,7 @@ public class HomeDashboardController {
 	public Map<String, Object> createCategary(@RequestBody Category category) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Category resultObj = dashBoardService.addCategory(category);
-		if (Sharp6Validation.isEmpty(resultObj)) {
+		if (!Sharp6Validation.isEmpty(resultObj)) {
 			logger.info("successs");
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);
 			resultMap.put("value", resultObj);
@@ -51,6 +51,25 @@ public class HomeDashboardController {
 	 */
 	@GetMapping("/Getcategory")
 	public Map<String, Object> getCategary() {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<Category> resultList = dashBoardService.getAllCategory();
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to fetch categories");
+		}
+
+		return resultMap;
+
+	}
+
+	/**
+	 * get categories
+	 */
+	@GetMapping("/GetcategoryById")
+	public Map<String, Object> getCategaryById() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<Category> resultList = dashBoardService.getAllCategory();
 		if (!Sharp6Validation.isEmpty(resultList)) {

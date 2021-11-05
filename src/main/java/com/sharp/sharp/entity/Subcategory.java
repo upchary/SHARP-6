@@ -20,9 +20,11 @@ public class Subcategory {
 	private String subcategorydesc;
 	private Timestamp createddate;
 
-	@OneToOne
-	@JoinColumn(name = "categoryid")
-	private Category category;
+	/*
+	 * @OneToOne
+	 * 
+	 * @JoinColumn(name = "categoryid") private Category category;
+	 */
 
 	public String getSubcategoryid() {
 		return subcategoryid;
@@ -56,12 +58,10 @@ public class Subcategory {
 		this.createddate = createddate;
 	}
 
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+	/*
+	 * public Category getCategory() { return category; }
+	 * 
+	 * public void setCategory(Category category) { this.category = category; }
+	 */
 
 }

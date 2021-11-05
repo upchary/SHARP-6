@@ -1,6 +1,7 @@
 package com.sharp.sharp.entity;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -20,9 +22,9 @@ public class Category {
 
 	private String categorydesc;
 	private Timestamp createddate;
-	@OneToOne(mappedBy = "category", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "categoryid")
-	private Subcategory subcategoryid;
+	private List<Subcategory> subcategoryid;
 
 	public String getCategoryid() {
 		return categoryid;
@@ -56,12 +58,14 @@ public class Category {
 		this.createddate = createddate;
 	}
 
-	public Subcategory getSubcategoryid() {
+	public List<Subcategory> getSubcategoryid() {
 		return subcategoryid;
 	}
 
-	public void setSubcategoryid(Subcategory subcategoryid) {
+	public void setSubcategoryid(List<Subcategory> subcategoryid) {
 		this.subcategoryid = subcategoryid;
 	}
+
+	
 
 }
