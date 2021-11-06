@@ -13,8 +13,8 @@ import com.sharp.sharp.entity.Category;
 public interface HomeDashBoardService {
 	Category addCategory(Category category);
 
-	
-
 	List<Category> getAllCategory();
+
+	Category getCategoryBYId(Category category);
 
 }

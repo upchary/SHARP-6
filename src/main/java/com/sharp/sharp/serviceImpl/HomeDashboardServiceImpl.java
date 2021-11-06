@@ -25,10 +25,10 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 		// TODO Auto-generated method stub
 		try {
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-			cateory.setCategoryid(String.valueOf(timestamp));
+		
 			logger.info("=============>");
 			cateory.setCreateddate(new Timestamp(System.currentTimeMillis()));
-			for (int i = 0; i <cateory.getSubcategoryid().size(); i++) {
+			for (int i = 0; i < cateory.getSubcategoryid().size(); i++) {
 				cateory.getSubcategoryid().get(i)
 						.setSubcategoryid(cateory.getSubcategoryid().get(i).getSubcategoryname().toUpperCase());
 				cateory.getSubcategoryid().get(i).setCreateddate(new Timestamp(System.currentTimeMillis()));
@@ -52,6 +52,20 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 			List<Category> findAll = categoryDao.findAll();
 			logger.info("success");
 			return findAll;
+		} catch (Exception e) {
+			// TODO: handle exception
+			logger.info("error at service implmentation");
+			return null;
+
+		}
+	}
+
+	@Override
+	public Category getCategoryBYId(Category category) {
+		try {
+			Category catogery = categoryDao.getById(category.getCategoryid());
+			logger.info("success");
+			return catogery;
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.info("error at service implmentation");

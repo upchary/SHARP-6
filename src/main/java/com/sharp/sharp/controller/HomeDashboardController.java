@@ -27,7 +27,7 @@ public class HomeDashboardController {
 	/**
 	 * create categories
 	 */
-	@PostMapping("/category")
+	@PostMapping("/category/")
 	public Map<String, Object> createCategary(@RequestBody Category category) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Category resultObj = dashBoardService.addCategory(category);
@@ -49,7 +49,7 @@ public class HomeDashboardController {
 	/**
 	 * get categories
 	 */
-	@GetMapping("/Getcategory")
+	@GetMapping("/Getcategory/")
 	public Map<String, Object> getCategary() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<Category> resultList = dashBoardService.getAllCategory();
@@ -68,10 +68,10 @@ public class HomeDashboardController {
 	/**
 	 * get categories
 	 */
-	@GetMapping("/GetcategoryById")
-	public Map<String, Object> getCategaryById() {
+	@PostMapping("/GetcategoryById/")
+	public Map<String, Object> getCategaryById(@RequestBody Category category) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<Category> resultList = dashBoardService.getAllCategory();
+		Category resultList = dashBoardService.getCategoryBYId(category);
 		if (!Sharp6Validation.isEmpty(resultList)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);
 			resultMap.put("value", resultList);

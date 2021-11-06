@@ -16,7 +16,8 @@ import javax.persistence.OneToOne;
 public class Category {
 
 	@Id
-	private String categoryid;
+	@GeneratedValue
+	private int categoryid;
 
 	private String categoryname;
 
@@ -26,11 +27,11 @@ public class Category {
 	@JoinColumn(name = "categoryid")
 	private List<Subcategory> subcategoryid;
 
-	public String getCategoryid() {
+	public int getCategoryid() {
 		return categoryid;
 	}
 
-	public void setCategoryid(String categoryid) {
+	public void setCategoryid(int categoryid) {
 		this.categoryid = categoryid;
 	}
 
@@ -65,7 +66,5 @@ public class Category {
 	public void setSubcategoryid(List<Subcategory> subcategoryid) {
 		this.subcategoryid = subcategoryid;
 	}
-
-	
 
 }
