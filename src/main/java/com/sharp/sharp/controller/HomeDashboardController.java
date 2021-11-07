@@ -3,6 +3,7 @@ package com.sharp.sharp.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +72,7 @@ public class HomeDashboardController {
 	@PostMapping("/GetcategoryById/")
 	public Map<String, Object> getCategaryById(@RequestBody Category category) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Category resultList = dashBoardService.getCategoryBYId(category);
+		Optional<Category> resultList = dashBoardService.getCategoryBYId(category);
 		if (!Sharp6Validation.isEmpty(resultList)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);
 			resultMap.put("value", resultList);

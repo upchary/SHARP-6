@@ -2,6 +2,7 @@ package com.sharp.sharp.serviceImpl;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sharp.sharp.entity.Category;
-import com.sharp.sharp.entity.Subcategory;
 import com.sharp.sharp.repository.CategoryRepository;
 import com.sharp.sharp.service.HomeDashBoardService;
 
@@ -24,8 +24,8 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	public Category addCategory(Category cateory) {
 		// TODO Auto-generated method stub
 		try {
-			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		
+			
+
 			logger.info("=============>");
 			cateory.setCreateddate(new Timestamp(System.currentTimeMillis()));
 			for (int i = 0; i < cateory.getSubcategoryid().size(); i++) {
@@ -60,12 +60,15 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public Category getCategoryBYId(Category category) {
+	public Optional<Category> getCategoryBYId(Category category) {
 		try {
-			Category catogery = categoryDao.getById(category.getCategoryid());
+
+			Optional<Category> findById = categoryDao.findById(category.getCategoryid());
+
 			logger.info("success");
-			return catogery;
+			return findById;
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.info("error at service implmentation");

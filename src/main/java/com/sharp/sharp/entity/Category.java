@@ -1,5 +1,6 @@
 package com.sharp.sharp.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Category {
+public class Category implements Serializable{
 
 	@Id
 	@GeneratedValue
