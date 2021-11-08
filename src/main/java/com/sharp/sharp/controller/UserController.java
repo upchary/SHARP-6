@@ -63,6 +63,7 @@ public class UserController {
 	public Map<String, Object> loginUser(@RequestBody LoginSession entity) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		UserMaster userLogin = userService.userLogin(entity);
+		System.out.println(userLogin);
 		if (!Sharp6Validation.isEmpty(userLogin)) {
 			entity.setRole(userLogin.getRole());
 			LoginSession insertLogin = loginService.insertLogin(entity);

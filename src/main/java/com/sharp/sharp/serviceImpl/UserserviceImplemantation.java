@@ -1,8 +1,6 @@
 package com.sharp.sharp.serviceImpl;
 
-
 import java.util.List;
-
 
 import org.apache.log4j.Logger;
 
@@ -17,6 +15,7 @@ import com.sharp.sharp.repository.LoginRepository;
 import com.sharp.sharp.repository.UserRepository;
 import com.sharp.sharp.service.UserService;
 import com.sharp.sharp.util.Constants;
+import com.sharp.sharp.util.Sharp6Validation;
 
 @Component
 @Transactional
@@ -43,15 +42,11 @@ public class UserserviceImplemantation implements UserService {
 	@Override
 	public UserMaster userLogin(LoginSession entity) {
 		try {
-			if (getUser(entity).equals(Constants.SUCCESS)) {
-				UserMaster userLogin = userdao.getUser(entity.getEmail(), entity.getPassword());
 
-				System.out.println(userLogin.getEmail());
-				return userLogin;
-			} else {
+			UserMaster userLogin = getUser(entity);
+			System.out.println(userLogin.getEmail());
+			return userLogin;
 
-				return null;
-			}
 		} catch (
 
 		Exception e) {
@@ -60,12 +55,16 @@ public class UserserviceImplemantation implements UserService {
 
 	}
 
-	public String getUser(LoginSession entity) {
+	public UserMaster getUser(LoginSession entity) {
 		try {
 			UserMaster user = userdao.getUser(entity.getEmail(), entity.getPassword());
-			return Constants.SUCCESS;
+			if (!Sharp6Validation.isEmpty(user) && user.isActivestatus())
+				return user;
+			else {
+				return null;
+			}
 		} catch (Exception e) {
-			return Constants.FAILURE;
+			return null;
 		}
 
 	}

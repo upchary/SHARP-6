@@ -12,7 +12,7 @@ import com.sharp.sharp.entity.UserMaster;
 @Repository
 public interface UserRepository extends JpaRepository<UserMaster, Integer> {
 
-	@Query(value = "SELECT * FROM user_master WHERE email = ?1 and password = ?2 and activestatus=1", nativeQuery = true)
+	@Query(value = "SELECT * FROM user_master WHERE email = ?1 and password = ?2", nativeQuery = true)
 	UserMaster getUser(String emailAddress, String password);
 
 	@Query(value = "SELECT * FROM user_master WHERE email = ?1 and password = ?2", nativeQuery = true)
