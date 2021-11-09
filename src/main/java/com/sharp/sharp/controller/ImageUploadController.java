@@ -30,8 +30,7 @@ public class ImageUploadController {
 		if (Sharp6Validation.isEmpty(allImagesById)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);
 			resultMap.put("value", allImagesById);
-		}
-		else {
+		} else {
 			resultMap.put(Constants.STATUS, Constants.FAILURE);
 			resultMap.put("value", "No Images Are available");
 		}

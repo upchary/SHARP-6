@@ -1,21 +1,24 @@
 package com.sharp.sharp.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-
+@Table(name = "ImagesEntity")
 public class ImagesEntity {
 
 	@Id
 
 	private String id;
-
+	
+	@Column(name = "userId")
 	private String userId;
 
 	private String fileName;

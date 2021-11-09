@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sharp.sharp.entity.Category;
+import com.sharp.sharp.entity.Channel;
 import com.sharp.sharp.service.HomeDashBoardService;
 import com.sharp.sharp.util.Constants;
 import com.sharp.sharp.util.Sharp6Validation;
@@ -67,7 +68,7 @@ public class HomeDashboardController {
 	}
 
 	/**
-	 * get categories
+	 * get category by Id
 	 */
 	@PostMapping("/GetcategoryById/")
 	public Map<String, Object> getCategaryById(@RequestBody Category category) {
@@ -78,11 +79,64 @@ public class HomeDashboardController {
 			resultMap.put("value", resultList);
 		} else {
 			resultMap.put(Constants.STATUS, Constants.FAILURE);
-			resultMap.put("errorValue", "unable to fetch categories");
+			resultMap.put("errorValue", "unable to fetch category");
 		}
 
 		return resultMap;
 
 	}
 
+	@PostMapping("/createChannel/")
+	public Map<String, Object> createChannel(@RequestBody Channel category) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Channel resultList = dashBoardService.createChannel(category);
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to Create Channel");
+		}
+
+		return resultMap;
+
+	}
+
+	/**
+	 * get categories
+	 */
+	@GetMapping("/GetChannels/")
+	public Map<String, Object> getAllChannels() {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<Channel> resultList = dashBoardService.getAllChannels();
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to fetch Channels");
+		}
+
+		return resultMap;
+
+	}
+
+	/**
+	 * get Channel by Id
+	 */
+	@PostMapping("/GetChannelById/")
+	public Map<String, Object> getChannelById(@RequestBody Channel category) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Optional<Channel> resultList = dashBoardService.getChannelById(category);
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to fetch Channel");
+		}
+
+		return resultMap;
+
+	}
 }
