@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sharp.sharp.entity.Category;
 import com.sharp.sharp.entity.Channel;
+import com.sharp.sharp.entity.ShowDetails;
 import com.sharp.sharp.service.HomeDashBoardService;
 import com.sharp.sharp.util.Constants;
 import com.sharp.sharp.util.Sharp6Validation;
@@ -134,6 +135,81 @@ public class HomeDashboardController {
 		} else {
 			resultMap.put(Constants.STATUS, Constants.FAILURE);
 			resultMap.put("errorValue", "unable to fetch Channel");
+		}
+
+		return resultMap;
+
+	}
+
+	/**
+	 * add show
+	 */
+	@PostMapping("/addShow/")
+	public Map<String, Object> addShow(@RequestBody ShowDetails show) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		ShowDetails resultList = dashBoardService.crateShow(show);
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to create Show");
+		}
+
+		return resultMap;
+
+	}
+
+	/**
+	 * get Shows
+	 */
+	@GetMapping("/GetALLShows/")
+	public Map<String, Object> getAllShows() {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<ShowDetails> resultList = dashBoardService.getAllShows();
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to fetch Shows");
+		}
+
+		return resultMap;
+
+	}
+
+	/**
+	 * get Channel by Id
+	 */
+	@PostMapping("/GetShowById/")
+	public Map<String, Object> getShowById(@RequestBody ShowDetails show) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Optional<ShowDetails> resultList = dashBoardService.getShowById(show);
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to fetch Show");
+		}
+
+		return resultMap;
+	}
+
+	/**
+	 * delete show by Id
+	 */
+	@PostMapping("/removeshowbyId/")
+	public Map<String, Object> remooveShow(@RequestBody ShowDetails show) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		String resultList = dashBoardService.deleteShow(show);
+		if (!resultList.equals(Constants.SUCCESS)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", "Show Remooved Successfully");
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to Remove Show");
 		}
 
 		return resultMap;

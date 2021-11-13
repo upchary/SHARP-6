@@ -3,15 +3,15 @@ package com.sharp.sharp.serviceImpl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sharp.sharp.entity.Language;
 import com.sharp.sharp.entity.LoginSession;
+import com.sharp.sharp.entity.Questions;
 import com.sharp.sharp.entity.UserMaster;
 import com.sharp.sharp.repository.LoginRepository;
+import com.sharp.sharp.repository.QeryRepository;
 import com.sharp.sharp.repository.UserRepository;
 import com.sharp.sharp.service.UserService;
 import com.sharp.sharp.util.Constants;
@@ -25,6 +25,8 @@ public class UserserviceImplemantation implements UserService {
 	private UserRepository userdao;
 	@Autowired
 	private LoginRepository loginDao;
+	@Autowired
+	private QeryRepository queryDao;
 
 	@Override
 	public UserMaster newUserRegister(UserMaster user) {
@@ -86,6 +88,12 @@ public class UserserviceImplemantation implements UserService {
 	public List<Object[]> getALLLanguages() {
 		// TODO Auto-generated method stub
 		return userdao.getALLLanguages();
+	}
+
+	@Override
+	public Questions inserttQueries(Questions question) {
+		// TODO Auto-generated method stub
+		return queryDao.save(question);
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sharp.sharp.entity.Language;
 import com.sharp.sharp.entity.LoginSession;
+import com.sharp.sharp.entity.Questions;
 import com.sharp.sharp.entity.UserMaster;
 
 @Service
@@ -20,5 +21,7 @@ public interface UserService {
 	public String changePassword(UserMaster user);
 
 	public List<Object[]> getALLLanguages();
+
+	public Questions inserttQueries(Questions question);
 
 }

@@ -24,9 +24,11 @@ public class Category implements Serializable{
 
 	private String categorydesc;
 	private Timestamp createddate;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "categoryid")
-	private List<Subcategory> subcategoryid;
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinColumn(name = "categoryid") private List<Subcategory> subcategoryid;
+	 */
 
 	public int getCategoryid() {
 		return categoryid;
@@ -60,12 +62,11 @@ public class Category implements Serializable{
 		this.createddate = createddate;
 	}
 
-	public List<Subcategory> getSubcategoryid() {
-		return subcategoryid;
-	}
-
-	public void setSubcategoryid(List<Subcategory> subcategoryid) {
-		this.subcategoryid = subcategoryid;
-	}
+	/*
+	 * public List<Subcategory> getSubcategoryid() { return subcategoryid; }
+	 * 
+	 * public void setSubcategoryid(List<Subcategory> subcategoryid) {
+	 * this.subcategoryid = subcategoryid; }
+	 */
 
 }

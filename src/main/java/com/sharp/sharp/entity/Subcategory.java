@@ -2,14 +2,16 @@ package com.sharp.sharp.entity;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "subcategory")
 public class Subcategory {
 
 	@Id
@@ -20,11 +22,9 @@ public class Subcategory {
 	private String subcategorydesc;
 	private Timestamp createddate;
 
-	/*
-	 * @OneToOne
-	 * 
-	 * @JoinColumn(name = "categoryid") private Category category;
-	 */
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "categoryid")
+	private Category category;
 
 	public String getSubcategoryid() {
 		return subcategoryid;

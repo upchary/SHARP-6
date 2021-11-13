@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.sharp.sharp.entity.Category;
 import com.sharp.sharp.entity.Channel;
+import com.sharp.sharp.entity.ShowDetails;
 
 @Service
 @Transactional
@@ -24,5 +25,13 @@ public interface HomeDashBoardService {
 	List<Channel> getAllChannels();
 
 	Optional<Channel> getChannelById(Channel category);
+
+	ShowDetails crateShow(ShowDetails show);
+
+	List<ShowDetails> getAllShows();
+
+	Optional<ShowDetails> getShowById(ShowDetails show);
+
+	String deleteShow(ShowDetails show);
 
 }

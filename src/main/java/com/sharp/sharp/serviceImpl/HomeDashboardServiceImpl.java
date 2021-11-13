@@ -11,14 +11,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sharp.sharp.entity.Category;
 import com.sharp.sharp.entity.Channel;
+import com.sharp.sharp.entity.ShowDetails;
 import com.sharp.sharp.repository.CategoryRepository;
 import com.sharp.sharp.repository.ChannelRepository;
+import com.sharp.sharp.repository.ShowRepository;
 import com.sharp.sharp.service.HomeDashBoardService;
+import com.sharp.sharp.util.Constants;
 
 @Component
 @Transactional
 public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	private static final Logger logger = Logger.getLogger(HomeDashboardServiceImpl.class);
+	@Autowired
+	private ShowRepository showDao;
 	@Autowired
 	private CategoryRepository categoryDao;
 	@Autowired
@@ -30,13 +35,16 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 		try {
 
 			logger.info("=============>");
-			cateory.setCreateddate(new Timestamp(System.currentTimeMillis()));
-			for (int i = 0; i < cateory.getSubcategoryid().size(); i++) {
-				cateory.getSubcategoryid().get(i)
-						.setSubcategoryid(cateory.getSubcategoryid().get(i).getSubcategoryname().toUpperCase());
-				cateory.getSubcategoryid().get(i).setCreateddate(new Timestamp(System.currentTimeMillis()));
-
-			}
+			/*
+			 * cateory.setCreateddate(new Timestamp(System.currentTimeMillis())); for (int i
+			 * = 0; i < cateory.getSubcategoryid().size(); i++) {
+			 * cateory.getSubcategoryid().get(i)
+			 * .setSubcategoryid(cateory.getSubcategoryid().get(i).getSubcategoryname().
+			 * toUpperCase()); cateory.getSubcategoryid().get(i).setCreateddate(new
+			 * Timestamp(System.currentTimeMillis()));
+			 * 
+			 * }
+			 */
 
 			Category obj = categoryDao.save(cateory);
 			logger.info("success");
@@ -122,6 +130,38 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 			logger.info("error at service implmentation");
 			return null;
 
+		}
+	}
+
+	@Override
+	public ShowDetails crateShow(ShowDetails show) {
+		// TODO Auto-generated method stub
+		return showDao.save(show);
+	}
+
+	@Override
+	public List<ShowDetails> getAllShows() {
+		// TODO Auto-generated method stub
+		return showDao.findAll();
+	}
+
+	@Override
+	public Optional<ShowDetails> getShowById(ShowDetails show) {
+		// TODO Auto-generated method stub
+		return showDao.findById(show.getShowid());
+	}
+
+	@Override
+	public String deleteShow(ShowDetails show) {
+		// TODO Auto-generated method stub
+
+		try {
+
+			showDao.deleteById(show.getShowid());
+			return Constants.SUCCESS;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return Constants.FAILURE;
 		}
 	}
 

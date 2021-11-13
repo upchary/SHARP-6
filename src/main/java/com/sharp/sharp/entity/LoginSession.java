@@ -2,9 +2,11 @@ package com.sharp.sharp.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
+@Table(name = "login_session")
 public class LoginSession {
 	@Id
 	private String sessionID;

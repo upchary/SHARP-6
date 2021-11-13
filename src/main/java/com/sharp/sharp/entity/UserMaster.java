@@ -3,9 +3,11 @@ package com.sharp.sharp.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
+@Table(name = "showdetails")
 public class UserMaster {
 	@Id
 	@GeneratedValue

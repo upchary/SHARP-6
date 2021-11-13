@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sharp.sharp.entity.Language;
 import com.sharp.sharp.entity.LoginSession;
 import com.sharp.sharp.entity.OTPValidation;
+import com.sharp.sharp.entity.Questions;
 import com.sharp.sharp.entity.UserMaster;
 import com.sharp.sharp.service.LoginService;
 import com.sharp.sharp.service.UserService;
@@ -190,7 +191,6 @@ public class UserController {
 
 		try {
 			List<Object[]> langList = userService.getALLLanguages();
-			
 
 			if (langList.size() > 0) {
 				resultMap.put("status", Constants.SUCCESS);
@@ -202,6 +202,30 @@ public class UserController {
 			resultMap.put("errorvalue", e.getLocalizedMessage());
 		}
 		resultMap.put(Constants.URLPATH, "getAllLanguages");
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
+	}
+
+	// Q&A api
+	@RequestMapping(value = "/Queries/", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> inserttQueries(@RequestBody Questions question) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+		try {
+			Questions langList = userService.inserttQueries(question);
+
+			if (!Sharp6Validation.isEmpty(langList)) {
+				resultMap.put("status", Constants.SUCCESS);
+				resultMap.put("value", "Question submitted");
+			}else {
+				resultMap.put("status", Constants.FAILURE);
+				resultMap.put("value", "Question Not submitted");
+			}
+		} catch (Exception e) {
+			resultMap.put("status", Constants.FAILURE);
+			resultMap.put("errormessage", e.getMessage());
+			resultMap.put("errorvalue", e.getLocalizedMessage());
+		}
+		resultMap.put(Constants.URLPATH, "Queries");
 		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
 	}
 
