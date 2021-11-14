@@ -35,16 +35,14 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 		try {
 
 			logger.info("=============>");
-			/*
-			 * cateory.setCreateddate(new Timestamp(System.currentTimeMillis())); for (int i
-			 * = 0; i < cateory.getSubcategoryid().size(); i++) {
-			 * cateory.getSubcategoryid().get(i)
-			 * .setSubcategoryid(cateory.getSubcategoryid().get(i).getSubcategoryname().
-			 * toUpperCase()); cateory.getSubcategoryid().get(i).setCreateddate(new
-			 * Timestamp(System.currentTimeMillis()));
-			 * 
-			 * }
-			 */
+
+			cateory.setCreateddate(new Timestamp(System.currentTimeMillis()));
+			for (int i = 0; i < cateory.getSubcategory().size(); i++) {
+				cateory.getSubcategory().get(i)
+						.setSubcategoryid(cateory.getSubcategory().get(i).getSubcategoryname().toUpperCase());
+				cateory.getSubcategory().get(i).setCreateddate(new Timestamp(System.currentTimeMillis()));
+
+			}
 
 			Category obj = categoryDao.save(cateory);
 			logger.info("success");

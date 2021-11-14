@@ -1,5 +1,6 @@
 package com.sharp.sharp.controller;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,9 +89,11 @@ public class HomeDashboardController {
 	}
 
 	@PostMapping("/createChannel/")
-	public Map<String, Object> createChannel(@RequestBody Channel category) {
+	public Map<String, Object> createChannel(@RequestBody Channel channel) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Channel resultList = dashBoardService.createChannel(category);
+		channel.setChannelid(channel.getChannelname().toUpperCase());
+		channel.setCreateddate(new Timestamp(System.currentTimeMillis()));
+		Channel resultList = dashBoardService.createChannel(channel);
 		if (!Sharp6Validation.isEmpty(resultList)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);
 			resultMap.put("value", resultList);

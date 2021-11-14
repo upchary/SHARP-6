@@ -1,5 +1,6 @@
 package com.sharp.sharp.entity;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "subcategory")
-public class Subcategory {
+public class Subcategory implements Serializable{
 
 	@Id
 	private String subcategoryid;
@@ -22,9 +23,14 @@ public class Subcategory {
 	private String subcategorydesc;
 	private Timestamp createddate;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "categoryid")
-	private Category category;
+	//@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+	/*
+	 * // @JoinColumn(name = "categoryid")
+	 * 
+	 * @JoinColumn(name = "categoryid", referencedColumnName = "categoryid") private
+	 * Category categoryId;
+	 */
 
 	public String getSubcategoryid() {
 		return subcategoryid;
@@ -59,9 +65,12 @@ public class Subcategory {
 	}
 
 	/*
-	 * public Category getCategory() { return category; }
+	 * public Category getCategoryId() { return categoryId; }
 	 * 
-	 * public void setCategory(Category category) { this.category = category; }
+	 * public void setCategoryId(Category categoryId) { this.categoryId =
+	 * categoryId; }
 	 */
+
+	
 
 }

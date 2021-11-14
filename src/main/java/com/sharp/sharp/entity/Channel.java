@@ -16,6 +16,7 @@ public class Channel {
 	private String channelid;
 	private String channelname;
 	private String channeldesc;
+	
 	private Timestamp createddate;
 	public String getChannelid() {
 		return channelid;

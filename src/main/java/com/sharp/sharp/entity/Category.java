@@ -12,23 +12,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Category implements Serializable{
+@Table(name = "category")
+public class Category implements Serializable {
 
 	@Id
-	@GeneratedValue
+	// @GeneratedValue
 	private int categoryid;
 
 	private String categoryname;
 
 	private String categorydesc;
 	private Timestamp createddate;
-	/*
-	 * @OneToMany(cascade = CascadeType.ALL)
-	 * 
-	 * @JoinColumn(name = "categoryid") private List<Subcategory> subcategoryid;
-	 */
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "categoryid")
+
+//	@JoinColumn(name = "categoryid", referencedColumnName = "categoryidref")
+	private List<Subcategory> subcategory;
 
 	public int getCategoryid() {
 		return categoryid;
@@ -62,11 +65,12 @@ public class Category implements Serializable{
 		this.createddate = createddate;
 	}
 
-	/*
-	 * public List<Subcategory> getSubcategoryid() { return subcategoryid; }
-	 * 
-	 * public void setSubcategoryid(List<Subcategory> subcategoryid) {
-	 * this.subcategoryid = subcategoryid; }
-	 */
+	public List<Subcategory> getSubcategory() {
+		return subcategory;
+	}
+
+	public void setSubcategory(List<Subcategory> subcategory) {
+		this.subcategory = subcategory;
+	}
 
 }
