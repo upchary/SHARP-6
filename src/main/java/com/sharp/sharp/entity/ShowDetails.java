@@ -4,18 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "showdetails")
 public class ShowDetails {
-	
+
 	@Id
 	private String showid;
 	private String categorieid;
 	private String languageid;
 	private String channelid;
-	@Lob
-	private byte[] logo;
+//	@Lob
+	@Transient
+	private String logo;//need to add this in db 
 
 	public String getShowid() {
 		return showid;
@@ -49,11 +51,11 @@ public class ShowDetails {
 		this.channelid = channelid;
 	}
 
-	public byte[] getLogo() {
+	public String getLogo() {
 		return logo;
 	}
 
-	public void setLogo(byte[] logo) {
+	public void setLogo(String logo) {
 		this.logo = logo;
 	}
 

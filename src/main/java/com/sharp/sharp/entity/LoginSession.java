@@ -28,7 +28,8 @@ public class LoginSession {
 	private String logouttime;
 	@Transient
 	private String role;
-
+	@Transient
+	private String mobileNumber;
 	@Transient
 	private String password;
 
@@ -127,5 +128,14 @@ public class LoginSession {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+	
 
 }

@@ -59,7 +59,7 @@ public class UserserviceImplemantation implements UserService {
 
 	public UserMaster getUser(LoginSession entity) {
 		try {
-			UserMaster user = userdao.getUser(entity.getEmail(), entity.getPassword());
+			UserMaster user = userdao.getUser(entity.getMobileNumber(), entity.getPassword());
 			if (!Sharp6Validation.isEmpty(user) && user.isActivestatus())
 				return user;
 			else {

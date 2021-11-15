@@ -28,9 +28,9 @@ public interface HomeDashBoardService {
 
 	ShowDetails crateShow(ShowDetails show);
 
-	List<ShowDetails> getAllShows();
+	List<Object[]> getAllShows();
 
-	Optional<ShowDetails> getShowById(ShowDetails show);
+	Object getShowById(ShowDetails show);
 
 	String deleteShow(ShowDetails show);
 

@@ -138,15 +138,17 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	}
 
 	@Override
-	public List<ShowDetails> getAllShows() {
+	public List<Object[]> getAllShows() {
 		// TODO Auto-generated method stub
-		return showDao.findAll();
+		List<Object[]> getallshows = showDao.getallshows();
+		return getallshows;
 	}
 
 	@Override
-	public Optional<ShowDetails> getShowById(ShowDetails show) {
+	public Object getShowById(ShowDetails show) {
 		// TODO Auto-generated method stub
-		return showDao.findById(show.getShowid());
+		Object showdetailsById = showDao.getShowdetailsById(show.getShowid());
+		return showdetailsById;
 	}
 
 	@Override

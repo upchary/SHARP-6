@@ -169,7 +169,7 @@ public class HomeDashboardController {
 	@GetMapping("/GetALLShows/")
 	public Map<String, Object> getAllShows() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		List<ShowDetails> resultList = dashBoardService.getAllShows();
+		List<Object[]> resultList = dashBoardService.getAllShows();
 		if (!Sharp6Validation.isEmpty(resultList)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);
 			resultMap.put("value", resultList);
@@ -188,7 +188,7 @@ public class HomeDashboardController {
 	@PostMapping("/GetShowById/")
 	public Map<String, Object> getShowById(@RequestBody ShowDetails show) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Optional<ShowDetails> resultList = dashBoardService.getShowById(show);
+		Object resultList = dashBoardService.getShowById(show);
 		if (!Sharp6Validation.isEmpty(resultList)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);
 			resultMap.put("value", resultList);
