@@ -11,9 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sharp.sharp.entity.Category;
 import com.sharp.sharp.entity.Channel;
+import com.sharp.sharp.entity.Contestdetails;
 import com.sharp.sharp.entity.ShowDetails;
 import com.sharp.sharp.repository.CategoryRepository;
 import com.sharp.sharp.repository.ChannelRepository;
+import com.sharp.sharp.repository.ContestRepository;
 import com.sharp.sharp.repository.ShowRepository;
 import com.sharp.sharp.service.HomeDashBoardService;
 import com.sharp.sharp.util.Constants;
@@ -28,6 +30,8 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	private CategoryRepository categoryDao;
 	@Autowired
 	private ChannelRepository channelDao;
+	@Autowired
+	private ContestRepository contestDao;
 
 	@Override
 	public Category addCategory(Category cateory) {
@@ -163,6 +167,19 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 			// TODO: handle exception
 			return Constants.FAILURE;
 		}
+	}
+
+	@Override
+	public Contestdetails createCOntest(Contestdetails contest) {
+		// TODO Auto-generated method stub
+		try {
+			Contestdetails contestobj = contestDao.save(contest);
+			return contestobj;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+
 	}
 
 }

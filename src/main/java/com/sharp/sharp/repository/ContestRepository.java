@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sharp.sharp.entity.ContestastantsEntity;
+import com.sharp.sharp.entity.Contestdetails;
 
 @Repository
-public interface ContestantRepository extends JpaRepository<ContestastantsEntity, Integer> {
+public interface ContestRepository extends JpaRepository<Contestdetails, String> {
 
 }

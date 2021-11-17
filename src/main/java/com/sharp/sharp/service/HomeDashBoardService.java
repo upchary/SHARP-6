@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.sharp.sharp.entity.Category;
 import com.sharp.sharp.entity.Channel;
+import com.sharp.sharp.entity.Contestdetails;
 import com.sharp.sharp.entity.ShowDetails;
 
 @Service
@@ -33,5 +34,7 @@ public interface HomeDashBoardService {
 	Object getShowById(ShowDetails show);
 
 	String deleteShow(ShowDetails show);
+
+	Contestdetails createCOntest(Contestdetails contest);
 
 }

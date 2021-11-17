@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sharp.sharp.entity.Category;
 import com.sharp.sharp.entity.Channel;
+import com.sharp.sharp.entity.Contestdetails;
 import com.sharp.sharp.entity.ShowDetails;
 import com.sharp.sharp.service.HomeDashBoardService;
 import com.sharp.sharp.util.Constants;
@@ -218,4 +219,23 @@ public class HomeDashboardController {
 		return resultMap;
 
 	}
+	/**
+	 * create contest
+	 */
+	@PostMapping("/createContest/")
+	public Map<String, Object> remooveShow(@RequestBody Contestdetails contest) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+	 Contestdetails resultList = dashBoardService.createCOntest(contest);
+		if (!resultList.equals(Constants.SUCCESS)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", "Show Remooved Successfully");
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to Remove Show");
+		}
+
+		return resultMap;
+
+	}
+	
 }
