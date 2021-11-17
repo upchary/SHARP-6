@@ -30,7 +30,7 @@ import com.sharp.sharp.util.Sharp6Validation;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-	private static final Logger logger = Logger.getLogger(ContestantController.class);
+	private static final Logger logger = Logger.getLogger(UserController.class);
 
 	@Autowired
 	private UserService userService;
@@ -216,7 +216,7 @@ public class UserController {
 			if (!Sharp6Validation.isEmpty(langList)) {
 				resultMap.put("status", Constants.SUCCESS);
 				resultMap.put("value", "Question submitted");
-			}else {
+			} else {
 				resultMap.put("status", Constants.FAILURE);
 				resultMap.put("value", "Question Not submitted");
 			}

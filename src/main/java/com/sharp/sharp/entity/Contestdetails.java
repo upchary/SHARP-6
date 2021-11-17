@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "contestdetails")
@@ -33,6 +34,11 @@ public class Contestdetails {
 	private int minplayers;
 	private int maxplayers;
 	private Timestamp createddate;
+
+	@Transient
+	private String temanme;
+	@Transient
+	private String teamdesc;
 
 	public String getContestid() {
 		return contestid;
