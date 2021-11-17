@@ -37,4 +37,10 @@ public interface HomeDashBoardService {
 
 	Contestdetails createCOntest(Contestdetails contest);
 
+	Contestdetails updateContest(Contestdetails contest);
+
+	Contestdetails getContestById(String contestid);
+
+	List<Contestdetails> getAllContests();
+
 }

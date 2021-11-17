@@ -182,4 +182,40 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 
 	}
 
+	@Override
+	public Contestdetails updateContest(Contestdetails contest) {
+		// TODO Auto-generated method stub
+		try {
+			Contestdetails contestobj = contestDao.saveAndFlush(contest);
+			return contestobj;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+
+	@Override
+	public Contestdetails getContestById(String contestid) {
+		// TODO Auto-generated method stub
+		try {
+			Contestdetails contest = contestDao.getById(contestid);
+			return contest;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+
+	@Override
+	public List<Contestdetails> getAllContests() {
+		// TODO Auto-generated method stub
+		try {
+		List<Contestdetails> totalcontests = contestDao.findAll();
+		return totalcontests;
+		}catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+
 }

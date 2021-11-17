@@ -219,23 +219,81 @@ public class HomeDashboardController {
 		return resultMap;
 
 	}
+
 	/**
 	 * create contest
 	 */
 	@PostMapping("/createContest/")
 	public Map<String, Object> remooveShow(@RequestBody Contestdetails contest) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-	 Contestdetails resultList = dashBoardService.createCOntest(contest);
-		if (!resultList.equals(Constants.SUCCESS)) {
+		Contestdetails resultList = dashBoardService.createCOntest(contest);
+		if (!Sharp6Validation.isEmpty(resultList)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);
-			resultMap.put("value", "Show Remooved Successfully");
+			resultMap.put("value", resultList);
 		} else {
 			resultMap.put(Constants.STATUS, Constants.FAILURE);
-			resultMap.put("errorValue", "unable to Remove Show");
+			resultMap.put("errorValue", "unable to Create Contest");
 		}
 
 		return resultMap;
 
 	}
-	
+
+	/**
+	 * 
+	 * getContestById
+	 */
+	@PostMapping("/contestById/")
+	public Map<String, Object> getContestById(@RequestBody Contestdetails contest) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Contestdetails resultList = dashBoardService.getContestById(contest.getContestid());
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "contest not Exist");
+		}
+
+		return resultMap;
+
+	}
+
+	/**
+	 * 
+	 * getContestById
+	 */
+	@GetMapping("/getAllContests/")
+	public Map<String, Object> getAllContests() {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		List<Contestdetails> resultList = dashBoardService.getAllContests();
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "contest not Exist");
+		}
+
+		return resultMap;
+
+	}
+
+	@PostMapping("/completeContest/")
+	public Map<String, Object> comleteContest(@RequestBody Contestdetails contest) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Contestdetails resultList = dashBoardService.updateContest(contest);
+		if (!Sharp6Validation.isEmpty(resultList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value1", "status updated successfuly");
+			resultMap.put("value", resultList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to comlete the Contest");
+		}
+
+		return resultMap;
+
+	}
+
 }
