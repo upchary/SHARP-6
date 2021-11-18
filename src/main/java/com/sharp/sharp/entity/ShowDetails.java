@@ -1,8 +1,8 @@
 package com.sharp.sharp.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -11,19 +11,20 @@ import javax.persistence.Transient;
 public class ShowDetails {
 
 	@Id
-	private String showid;
+	@GeneratedValue
+	private int showid;
 	private String categorieid;
 	private String languageid;
 	private String channelid;
 //	@Lob
 	@Transient
-	private String logo;//need to add this in db 
+	private String logo;// need to add this in db
 
-	public String getShowid() {
+	public int getShowid() {
 		return showid;
 	}
 
-	public void setShowid(String showid) {
+	public void setShowid(int showid) {
 		this.showid = showid;
 	}
 

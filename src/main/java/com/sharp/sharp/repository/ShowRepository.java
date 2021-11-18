@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.sharp.sharp.entity.ShowDetails;
 
 @Repository
-public interface ShowRepository extends JpaRepository<ShowDetails, String> {
+public interface ShowRepository extends JpaRepository<ShowDetails, Integer> {
 	@Query(value = "SELECT c.categoryid ,c.categoryname ,c.categorydesc ,l.languageid ,l.languagename ,l.description ,ch.channelid ,ch.channelname ,ch.channeldesc FROM showdetails s JOIN category c ON s.categorieid = c.categoryid JOIN language l ON s.languageid = l.languageid JOIN channel ch ON s.channelid = ch.channelid WHERE showid = ?1 ", nativeQuery = true)
-	Object getShowdetailsById(String showid);
+	Object getShowdetailsById(int showid);
 
 	@Query(value = "SELECT c.categoryid ,c.categoryname ,c.categorydesc ,l.languageid ,l.languagename ,l.description ,ch.channelid ,ch.channelname ,ch.channeldesc FROM showdetails s JOIN category c ON s.categorieid = c.categoryid JOIN language l ON s.languageid = l.languageid JOIN channel ch ON s.channelid = ch.channelid ", nativeQuery = true)
 	List<Object[]> getallshows();

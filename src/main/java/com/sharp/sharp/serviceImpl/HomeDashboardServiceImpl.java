@@ -138,7 +138,13 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	@Override
 	public ShowDetails crateShow(ShowDetails show) {
 		// TODO Auto-generated method stub
-		return showDao.save(show);
+		try {
+			ShowDetails showObj = showDao.save(show);
+			return showObj;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 
 	@Override
@@ -152,6 +158,7 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	public Object getShowById(ShowDetails show) {
 		// TODO Auto-generated method stub
 		Object showdetailsById = showDao.getShowdetailsById(show.getShowid());
+		
 		return showdetailsById;
 	}
 
@@ -188,6 +195,7 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 		try {
 			Contestdetails contestobj = contestDao.saveAndFlush(contest);
 			return contestobj;
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			return null;
@@ -210,9 +218,9 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	public List<Contestdetails> getAllContests() {
 		// TODO Auto-generated method stub
 		try {
-		List<Contestdetails> totalcontests = contestDao.findAll();
-		return totalcontests;
-		}catch (Exception e) {
+			List<Contestdetails> totalcontests = contestDao.findAll();
+			return totalcontests;
+		} catch (Exception e) {
 			// TODO: handle exception
 			return null;
 		}

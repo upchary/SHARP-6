@@ -224,8 +224,9 @@ public class HomeDashboardController {
 	 * create contest
 	 */
 	@PostMapping("/createContest/")
-	public Map<String, Object> remooveShow(@RequestBody Contestdetails contest) {
+	public Map<String, Object> createContest(@RequestBody Contestdetails contest) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		contest.setCreateddate(new Timestamp(System.currentTimeMillis()));
 		Contestdetails resultList = dashBoardService.createCOntest(contest);
 		if (!Sharp6Validation.isEmpty(resultList)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);

@@ -19,7 +19,7 @@ import javax.persistence.Table;
 public class Category implements Serializable {
 
 	@Id
-	// @GeneratedValue
+	@GeneratedValue
 	private int categoryid;
 
 	private String categoryname;
