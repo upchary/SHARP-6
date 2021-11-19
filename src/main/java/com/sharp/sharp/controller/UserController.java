@@ -206,7 +206,7 @@ public class UserController {
 	}
 
 	// Q&A api
-	@RequestMapping(value = "/Queries/", method = RequestMethod.GET)
+	@RequestMapping(value = "/Queries/", method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> inserttQueries(@RequestBody Questions question) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 

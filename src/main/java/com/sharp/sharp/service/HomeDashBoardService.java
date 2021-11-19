@@ -11,6 +11,8 @@ import com.sharp.sharp.entity.Category;
 import com.sharp.sharp.entity.Channel;
 import com.sharp.sharp.entity.Contestdetails;
 import com.sharp.sharp.entity.ShowDetails;
+import com.sharp.sharp.entity.Status;
+import com.sharp.sharp.entity.Teams;
 
 @Service
 @Transactional
@@ -42,5 +44,9 @@ public interface HomeDashBoardService {
 	Contestdetails getContestById(String contestid);
 
 	List<Contestdetails> getAllContests();
+
+	Teams saveTeam(Contestdetails contest);
+
+	Status saveStatus(Contestdetails contest);
 
 }

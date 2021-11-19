@@ -18,6 +18,8 @@ import com.sharp.sharp.entity.Category;
 import com.sharp.sharp.entity.Channel;
 import com.sharp.sharp.entity.Contestdetails;
 import com.sharp.sharp.entity.ShowDetails;
+import com.sharp.sharp.entity.Status;
+import com.sharp.sharp.entity.Teams;
 import com.sharp.sharp.service.HomeDashBoardService;
 import com.sharp.sharp.util.Constants;
 import com.sharp.sharp.util.Sharp6Validation;
@@ -227,6 +229,10 @@ public class HomeDashboardController {
 	public Map<String, Object> createContest(@RequestBody Contestdetails contest) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		contest.setCreateddate(new Timestamp(System.currentTimeMillis()));
+		Teams team = dashBoardService.saveTeam(contest);
+		contest.setTeamid(team.getTeamid());
+		Status status = dashBoardService.saveStatus(contest);
+		contest.setStatusid(status.getStatusid());
 		Contestdetails resultList = dashBoardService.createCOntest(contest);
 		if (!Sharp6Validation.isEmpty(resultList)) {
 			resultMap.put(Constants.STATUS, Constants.SUCCESS);

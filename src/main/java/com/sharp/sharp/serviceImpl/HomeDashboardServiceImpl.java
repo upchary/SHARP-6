@@ -13,10 +13,14 @@ import com.sharp.sharp.entity.Category;
 import com.sharp.sharp.entity.Channel;
 import com.sharp.sharp.entity.Contestdetails;
 import com.sharp.sharp.entity.ShowDetails;
+import com.sharp.sharp.entity.Status;
+import com.sharp.sharp.entity.Teams;
 import com.sharp.sharp.repository.CategoryRepository;
 import com.sharp.sharp.repository.ChannelRepository;
 import com.sharp.sharp.repository.ContestRepository;
 import com.sharp.sharp.repository.ShowRepository;
+import com.sharp.sharp.repository.StatusRepository;
+import com.sharp.sharp.repository.TeamRepository;
 import com.sharp.sharp.service.HomeDashBoardService;
 import com.sharp.sharp.util.Constants;
 
@@ -32,6 +36,10 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	private ChannelRepository channelDao;
 	@Autowired
 	private ContestRepository contestDao;
+	@Autowired
+	private TeamRepository teamDao;
+	@Autowired
+	private StatusRepository statusDao;
 
 	@Override
 	public Category addCategory(Category cateory) {
@@ -158,7 +166,7 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	public Object getShowById(ShowDetails show) {
 		// TODO Auto-generated method stub
 		Object showdetailsById = showDao.getShowdetailsById(show.getShowid());
-		
+
 		return showdetailsById;
 	}
 
@@ -195,7 +203,7 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 		try {
 			Contestdetails contestobj = contestDao.saveAndFlush(contest);
 			return contestobj;
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			return null;
@@ -222,6 +230,37 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 			return totalcontests;
 		} catch (Exception e) {
 			// TODO: handle exception
+			return null;
+		}
+	}
+
+	@Override
+	public Teams saveTeam(Contestdetails contest) {
+		// TODO Auto-generated method stub
+		Teams teams = new Teams();
+		try {
+			teams.setTemanme(contest.getTemanme());
+			teams.setTeamdesc(contest.getTeamdesc());
+			teams.setCreateddate(new Timestamp(System.currentTimeMillis()));
+			Teams retObj = teamDao.save(teams);
+			return retObj;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+
+	@Override
+	public Status saveStatus(Contestdetails contest) {
+		// TODO Auto-generated method stub
+		try {
+			Status status = new Status();
+			status.setStatusname(contest.getStatusname());
+			status.setStatusdesc(contest.getTeamdesc());
+			status.setCreateddate(new Timestamp(System.currentTimeMillis()));
+			Status retObj = statusDao.save(status);
+			return retObj;
+		} catch (Exception e) {
 			return null;
 		}
 	}

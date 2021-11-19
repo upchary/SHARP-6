@@ -3,14 +3,19 @@ package com.sharp.sharp.entity;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "contestdetails")
 public class Contestdetails {
 	@Id
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	private String contestid;
 	private String showid;
 	private String languageid;
@@ -34,11 +39,47 @@ public class Contestdetails {
 	private int minplayers;
 	private int maxplayers;
 	private Timestamp createddate;
+	@Transient
+	private String statusname;
+	@Transient
+	private String statusdesc;
 
 	@Transient
 	private String temanme;
 	@Transient
 	private String teamdesc;
+
+	public String getTemanme() {
+		return temanme;
+	}
+
+	public void setTemanme(String temanme) {
+		this.temanme = temanme;
+	}
+
+	public String getTeamdesc() {
+		return teamdesc;
+	}
+
+	public void setTeamdesc(String teamdesc) {
+		this.teamdesc = teamdesc;
+	}
+
+	public String getStatusname() {
+		return statusname;
+	}
+
+	public void setStatusname(String statusname) {
+		this.statusname = statusname;
+	}
+
+	public String getStatusdesc() {
+		return statusdesc;
+	}
+
+	public void setStatusdesc(String statusdesc) {
+		this.statusdesc = statusdesc;
+	}
 
 	public String getContestid() {
 		return contestid;

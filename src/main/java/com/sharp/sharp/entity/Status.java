@@ -3,13 +3,18 @@ package com.sharp.sharp.entity;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "status")
 public class Status {
 	@Id
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
 	private String statusid;
 	private String statusname;
 	private String statusdesc;
@@ -46,5 +51,6 @@ public class Status {
 	public void setCreateddate(Timestamp createddate) {
 		this.createddate = createddate;
 	}
+	
 
 }
