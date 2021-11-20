@@ -35,10 +35,10 @@ public class UserserviceImplemantation implements UserService {
 		try {
 			userObj = userdao.save(user);
 
+			return userObj;
 		} catch (Exception e) {
 			return null;
 		}
-		return userObj;
 	}
 
 	@Override
@@ -46,7 +46,9 @@ public class UserserviceImplemantation implements UserService {
 		try {
 
 			UserMaster userLogin = getUser(entity);
-			System.out.println(userLogin.getEmail());
+			// if(!Sharp6Validation.isEmpty(userLogin.getUserlname()))
+			userLogin.setUserName(userLogin.getUserfname() + " " + userLogin.getUserlname());
+			System.out.println(userLogin.getUserid());
 			return userLogin;
 
 		} catch (
@@ -60,9 +62,10 @@ public class UserserviceImplemantation implements UserService {
 	public UserMaster getUser(LoginSession entity) {
 		try {
 			UserMaster user = userdao.getUser(entity.getMobileNumber(), entity.getPassword());
-			if (!Sharp6Validation.isEmpty(user) && user.isActivestatus())
+			if (!Sharp6Validation.isEmpty(user) && user.isActivestatus()) {
+				user.setUserName(user.getUserfname() + " " + user.getUserlname());
 				return user;
-			else {
+			} else {
 				return null;
 			}
 		} catch (Exception e) {
@@ -74,8 +77,8 @@ public class UserserviceImplemantation implements UserService {
 	@Override
 	public String changePassword(UserMaster user) {
 		try {
-			UserMaster byId = userdao.getById(user.getUserId());
-			byId.setPassword(user.getPassword());
+			UserMaster byId = userdao.getById(user.getUserid());
+			byId.setConfirmPassword(user.getConfirmPassword());
 			UserMaster save = userdao.save(byId);
 			return Constants.SUCCESS;
 		} catch (Exception e) {
@@ -93,7 +96,13 @@ public class UserserviceImplemantation implements UserService {
 	@Override
 	public Questions inserttQueries(Questions question) {
 		// TODO Auto-generated method stub
-		return queryDao.save(question);
+		try {
+			Questions questions = queryDao.save(question);
+			return questions;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 
 }

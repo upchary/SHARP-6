@@ -46,6 +46,7 @@ public class LoginserviceImplementation implements LoginService {
 	@Override
 	public LoginSession insertLogin(LoginSession login) {
 		// TODO Auto-generated method stub
+		
 		LoginSession loginObj = new LoginSession();
 		try {
 			loginObj = loginDao.save(login);
@@ -59,7 +60,7 @@ public class LoginserviceImplementation implements LoginService {
 	@Override
 	public String deleteLogin(String userId, String logouttime) {
 		try {
-			LoginSession byId = loginDao.getById(userId);
+			LoginSession byId = loginDao.getByUserId(userId);
 			System.out.println(userId);
 			byId.setLogouttime(logouttime);
 			LoginSession save = loginDao.save(byId);

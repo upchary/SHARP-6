@@ -1,5 +1,6 @@
 package com.sharp.sharp.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,9 +11,9 @@ import javax.persistence.Transient;
 public class LoginSession {
 	@Id
 	private String sessionID;
-
 	private String email;
-	private String userId;
+	@Column(name = "userid")
+	private String userid;
 
 	private String deviceType;
 
@@ -41,12 +42,12 @@ public class LoginSession {
 		this.sessionID = sessionID;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public String getDeviceType() {

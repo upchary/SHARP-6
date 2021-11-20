@@ -30,7 +30,7 @@ public class Contestdetails {
 	private int totalplayers;
 	private String contestdisplayname;
 	private String categorielist;
-	private Timestamp contestdate;
+	private String contestdate;
 	private String contesttime;
 	private String language;
 	private String teamname1_shotname;
@@ -38,7 +38,7 @@ public class Contestdetails {
 	private int price;
 	private int minplayers;
 	private int maxplayers;
-	private Timestamp createddate;
+	private String createddate;
 	@Transient
 	private String statusname;
 	@Transient
@@ -193,11 +193,12 @@ public class Contestdetails {
 		this.categorielist = categorielist;
 	}
 
-	public Timestamp getContestdate() {
+	
+	public String getContestdate() {
 		return contestdate;
 	}
 
-	public void setContestdate(Timestamp contestdate) {
+	public void setContestdate(String contestdate) {
 		this.contestdate = contestdate;
 	}
 
@@ -257,11 +258,11 @@ public class Contestdetails {
 		this.maxplayers = maxplayers;
 	}
 
-	public Timestamp getCreateddate() {
+	public String getCreateddate() {
 		return createddate;
 	}
 
-	public void setCreateddate(Timestamp createddate) {
+	public void setCreateddate(String createddate) {
 		this.createddate = createddate;
 	}
 

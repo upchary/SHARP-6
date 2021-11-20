@@ -1,40 +1,45 @@
 package com.sharp.sharp.entity;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "showdetails")
+@Table(name = "users")
 public class UserMaster {
 	@Id
-	@GeneratedValue
-	private int userId;
+	private String userid;
+	@Transient
 	private String userName;
-	private String firstName;
-	private String lastName;
+	private String userfname;
+	private String userlname;
 	private String password;
 	@Transient
 	private String confirmPassword;
+
 	private String mobileNumber;
-	private String email;
-	private String adress;
-	private String city;
-	private String state;
-	private String country;
-	private String pincode;
+	private int age;
+	private String address;
+	// private String city;
+	// private String state;
+	// private String country;
+	private Date dob;
 	private String role;
+
 	private boolean activestatus;
+	@Column(name ="created_date")
 	private String createdDate;
 
-	public int getUserId() {
-		return userId;
+	public String getUserid() {
+		return userid;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	public String getUserName() {
@@ -45,28 +50,20 @@ public class UserMaster {
 		this.userName = userName;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getUserfname() {
+		return userfname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setUserfname(String userfname) {
+		this.userfname = userfname;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getUserlname() {
+		return userlname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUserlname(String userlname) {
+		this.userlname = userlname;
 	}
 
 	public String getConfirmPassword() {
@@ -85,52 +82,28 @@ public class UserMaster {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public String getEmail() {
-		return email;
+	public int getAge() {
+		return age;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAge(int age) {
+		this.age = age;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getCity() {
-		return city;
+	public Date getDob() {
+		return dob;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(String pincode) {
-		this.pincode = pincode;
+	public void setDob(Date dob) {
+		this.dob = dob;
 	}
 
 	public String getRole() {
@@ -155,6 +128,14 @@ public class UserMaster {
 
 	public void setCreatedDate(String createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

@@ -10,15 +10,15 @@ import com.sharp.sharp.entity.Language;
 import com.sharp.sharp.entity.UserMaster;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserMaster, Integer> {
+public interface UserRepository extends JpaRepository<UserMaster, String> {
 
-	@Query(value = "SELECT * FROM user_master WHERE mobile_number = ?1 and password = ?2", nativeQuery = true)
+	@Query(value = "SELECT * FROM users WHERE userid = ?1", nativeQuery = true)
 	UserMaster getUser(String emailAddress, String password);
 
-	@Query(value = "SELECT * FROM user_master WHERE email = ?1 and password = ?2", nativeQuery = true)
+	@Query(value = "SELECT * FROM users WHERE userid = ?1", nativeQuery = true)
 	UserMaster userLogin(String emailAddress, String password);
 
-	@Query(value = "update password=?2 FROM user_master WHERE userId = ?1 ", nativeQuery = true)
+	@Query(value = "update password=?2 FROM users WHERE userid = ?1 ", nativeQuery = true)
 	UserMaster changePassword(String userId, String password);
 
 	@Query(value = "SELECT * FROM language", nativeQuery = true)

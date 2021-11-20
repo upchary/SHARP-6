@@ -45,8 +45,10 @@ public interface HomeDashBoardService {
 
 	List<Contestdetails> getAllContests();
 
-	Teams saveTeam(Contestdetails contest);
+	Teams saveTeam(Teams teams);
 
 	Status saveStatus(Contestdetails contest);
+
+	List<Teams> getAllTeams();
 
 }

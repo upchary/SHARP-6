@@ -40,11 +40,10 @@ public class UserController {
 	@PostMapping("/newRegister/")
 	public HashMap<String, Object> newUserRegister(@RequestBody UserMaster user) {
 		HashMap<String, Object> resultMap = new HashMap<>();
-		String[] split = user.getEmail().split("@");
-		user.setUserName(split[0]);
+		user.setUserid(user.getMobileNumber());
 		user.setActivestatus(true);
-
-		user.setCreatedDate(String.valueOf(new Date().getTime()));
+		Date date = new Date();
+		user.setCreatedDate(String.valueOf(date.getTime()));
 
 		UserMaster registerObj = userService.newUserRegister(user);
 		// log files
@@ -66,6 +65,7 @@ public class UserController {
 		UserMaster userLogin = userService.userLogin(entity);
 		System.out.println(userLogin);
 		if (!Sharp6Validation.isEmpty(userLogin)) {
+			entity.setUserid(userLogin.getUserid());
 			entity.setRole(userLogin.getRole());
 			LoginSession insertLogin = loginService.insertLogin(entity);
 			if (!Sharp6Validation.isEmpty(insertLogin)) {
@@ -149,10 +149,15 @@ public class UserController {
 
 		try {
 
-			String deleteLogin = loginService.deleteLogin(entity.getUserId(), entity.getLogouttime());
+			String deleteLogin = loginService.deleteLogin(entity.getUserid(), entity.getLogouttime());
 			System.out.println("userLogout successfull");
-			map.put(Constants.STATUS, deleteLogin);
-			map.put("value", "Logoutsuccessfull");
+			if (deleteLogin.equals(Constants.SUCCESS)) {
+				map.put(Constants.STATUS, deleteLogin);
+				map.put("value", "Logout successfull");
+			} else {
+				map.put(Constants.STATUS, deleteLogin);
+				map.put("value", "Logout Failure");
+			}
 		} catch (Exception e) {
 
 			map.put(Constants.STATUS, Constants.FAILURE);

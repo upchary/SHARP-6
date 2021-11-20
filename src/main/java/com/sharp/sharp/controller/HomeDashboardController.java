@@ -228,9 +228,8 @@ public class HomeDashboardController {
 	@PostMapping("/createContest/")
 	public Map<String, Object> createContest(@RequestBody Contestdetails contest) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		contest.setCreateddate(new Timestamp(System.currentTimeMillis()));
-		Teams team = dashBoardService.saveTeam(contest);
-		contest.setTeamid(team.getTeamid());
+		contest.setCreateddate(String.valueOf(new Timestamp(System.currentTimeMillis())));
+
 		Status status = dashBoardService.saveStatus(contest);
 		contest.setStatusid(status.getStatusid());
 		Contestdetails resultList = dashBoardService.createCOntest(contest);
@@ -287,7 +286,7 @@ public class HomeDashboardController {
 	}
 
 	@PostMapping("/completeContest/")
-	public Map<String, Object> comleteContest(@RequestBody Contestdetails contest) {
+	public Map<String, Object> completeContest(@RequestBody Contestdetails contest) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Contestdetails resultList = dashBoardService.updateContest(contest);
 		if (!Sharp6Validation.isEmpty(resultList)) {
@@ -297,6 +296,45 @@ public class HomeDashboardController {
 		} else {
 			resultMap.put(Constants.STATUS, Constants.FAILURE);
 			resultMap.put("errorValue", "unable to comlete the Contest");
+		}
+
+		return resultMap;
+
+	}
+
+	/**
+	 * create contest
+	 */
+	@PostMapping("/createTeam/")
+	public Map<String, Object> createTeams(@RequestBody Teams teams) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		teams.setCreateddate(new Timestamp(System.currentTimeMillis()));
+		Teams teamList = dashBoardService.saveTeam(teams);
+
+		if (!Sharp6Validation.isEmpty(teamList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", teamList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to Create Team");
+		}
+
+		return resultMap;
+
+	}
+
+	@GetMapping("/getAllTeams/")
+	public Map<String, Object> fetchTeams() {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+
+		List<Teams> teamList = dashBoardService.getAllTeams();
+
+		if (!Sharp6Validation.isEmpty(teamList)) {
+			resultMap.put(Constants.STATUS, Constants.SUCCESS);
+			resultMap.put("value", teamList);
+		} else {
+			resultMap.put(Constants.STATUS, Constants.FAILURE);
+			resultMap.put("errorValue", "unable to Fetch Teams");
 		}
 
 		return resultMap;

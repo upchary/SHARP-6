@@ -235,15 +235,26 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	}
 
 	@Override
-	public Teams saveTeam(Contestdetails contest) {
+	public Status saveStatus(Contestdetails contest) {
 		// TODO Auto-generated method stub
-		Teams teams = new Teams();
 		try {
-			teams.setTemanme(contest.getTemanme());
-			teams.setTeamdesc(contest.getTeamdesc());
-			teams.setCreateddate(new Timestamp(System.currentTimeMillis()));
-			Teams retObj = teamDao.save(teams);
+			Status status = new Status();
+			status.setStatusname(contest.getStatusname());
+			status.setStatusdesc(contest.getStatusdesc());
+			status.setCreateddate(new Timestamp(System.currentTimeMillis()));
+			Status retObj = statusDao.save(status);
 			return retObj;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Teams saveTeam(Teams teams) {
+		// TODO Auto-generated method stub
+		try {
+			Teams team = teamDao.save(teams);
+			return team;
 		} catch (Exception e) {
 			// TODO: handle exception
 			return null;
@@ -251,16 +262,13 @@ public class HomeDashboardServiceImpl implements HomeDashBoardService {
 	}
 
 	@Override
-	public Status saveStatus(Contestdetails contest) {
+	public List<Teams> getAllTeams() {
 		// TODO Auto-generated method stub
 		try {
-			Status status = new Status();
-			status.setStatusname(contest.getStatusname());
-			status.setStatusdesc(contest.getTeamdesc());
-			status.setCreateddate(new Timestamp(System.currentTimeMillis()));
-			Status retObj = statusDao.save(status);
-			return retObj;
+			List<Teams> teamList = teamDao.findAll();
+			return teamList;
 		} catch (Exception e) {
+			// TODO: handle exception
 			return null;
 		}
 	}
