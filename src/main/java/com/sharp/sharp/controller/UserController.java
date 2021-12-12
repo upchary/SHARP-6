@@ -132,7 +132,8 @@ public class UserController {
 		try {
 			OTPValidation result = loginService.validateOTP(otpvalidation);
 			if (Constants.SUCCESS.equals(result)) {
-				resultMap.put("errorvalue", "OTP validation Failed");
+			
+				resultMap.put("errorvalue", "OTP validation Success");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
